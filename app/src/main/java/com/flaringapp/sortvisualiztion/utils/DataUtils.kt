@@ -6,4 +6,7 @@ object DataUtils {
         return b1 + ((x - a1) * (b2 - b1) / (a2 - a1))
     }
 
+    fun map(x: Int, a1: Int, a2: Int, b1: Float, b2: Float): Float {
+        return b1 + ((x - a1) * (b2 - b1) / (a2 - a1))
+    }
 }

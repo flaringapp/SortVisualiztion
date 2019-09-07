@@ -5,9 +5,10 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
-import com.flaringapp.sortvisualiztion.presentation.views.sort_view.models.LinesData
+import androidx.annotation.FloatRange
 import com.flaringapp.sortvisualiztion.utils.DataUtils
-import kotlin.math.absoluteValue
+import java.lang.Exception
+
 
 class SortView : View {
     constructor(context: Context?) : super(context)
@@ -19,26 +20,8 @@ class SortView : View {
     )
 
     init {
-        addOnLayoutChangeListener { _, left, top, right, bottom, _, _, _, _ ->
-            invalidateDrawData((right - left).absoluteValue, (bottom - top).absoluteValue)
-        }
+        setWillNotDraw(false)
     }
-
-    @ColorInt
-    var fillColor: Int = Color.BLACK
-        set(color) {
-            field = color
-            invalidate()
-        }
-
-    private lateinit var linesData: LinesData
-
-    private lateinit var drawBitmap: Bitmap
-    private lateinit var drawCanvas: Canvas
-
-    private var lineWidth: Float = 0f
-    private var minLineHeight: Float = 0f
-    private var maxLineHeight: Float = 0f
 
     private val linePaint = Paint().apply {
         color = Color.RED
@@ -48,10 +31,24 @@ class SortView : View {
         strokeJoin = Paint.Join.MITER
     }
 
-    fun setData(linesData: LinesData) {
-        this.linesData = linesData
-        invalidateDrawData()
-    }
+    @FloatRange(from = 0.0, to = 1.0)
+    var minHeight: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    @FloatRange(from = 0.0, to = 1.0)
+    var maxHeight: Float = 1f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    private var numbers: IntArray? = null
+
+    private var minNumber: Int = 0
+    private var maxNumber: Int = 0
 
     fun setLineColor(@ColorInt color: Int) {
         if (linePaint.color == color) return
@@ -60,108 +57,45 @@ class SortView : View {
         invalidate()
     }
 
-    fun notifyMove(from: Int, to: Int) {
-        if (from == to) return
-
-        linesData.numbers.swap(from, to)
-
-        drawSwapLines(from, to)
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        canvas.drawBitmap(drawBitmap, 0f, 0f, null)
-    }
-
-    private fun invalidateDrawData() {
-        invalidateDrawData(measuredWidth, measuredHeight)
-    }
-
-    private fun invalidateDrawData(width: Int, height: Int) {
-        if (width <= 0 || height <= 0) return
-
-        if (::drawBitmap.isInitialized) {
-            drawBitmap.reconfigure(width, height, Bitmap.Config.RGB_565)
+    fun invalidateNumbers(numbers: IntArray) {
+        if (this.numbers != null) {
+            if (numbers.size != this.numbers!!.size) throw Exception("Numbers size is changed")
         } else {
-            drawBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-            drawCanvas = Canvas(drawBitmap)
+            if (numbers.isEmpty()) throw Exception("Numbers should tot be empty")
+            minNumber = numbers.min()!!
+            maxNumber = numbers.max()!!
         }
 
-        lineWidth = width.toFloat() / linesData.numbers.size
-        minLineHeight = height * linesData.minHeight
-        maxLineHeight = height * linesData.maxHeight
-
-        drawInitialLines()
+        this.numbers = numbers
 
         invalidate()
     }
 
-    private fun drawInitialLines() {
-        drawCanvas.drawColor(fillColor)
-        val height = measuredHeight.toFloat()
-        linesData.numbers.forEachIndexed { index, number ->
-            val startX = index * lineWidth
-            val startY = DataUtils.map(
-                number,
-                linesData.numberMin,
-                linesData.numberMax,
-                minLineHeight,
-                maxLineHeight
-            )
-            drawCanvas.drawRect(
-                startX,
-                startY,
-                startX + lineWidth,
+    override fun onDraw(canvas: Canvas) {
+        drawLines(canvas)
+        super.onDraw(canvas)
+    }
+
+    private fun drawLines(canvas: Canvas) {
+        if (numbers == null) return
+
+        val lineWidth = this.width.toFloat() / numbers!!.size
+        val height = this.height.toFloat()
+
+        for (i in numbers!!.indices) {
+            canvas.drawRect(
+                lineWidth * i,
+                DataUtils.map(
+                    numbers!![i],
+                    minNumber,
+                    maxNumber,
+                    height * minHeight,
+                    height * maxHeight
+                ),
+                lineWidth * (i + 1),
                 height,
                 linePaint
             )
         }
     }
-
-    private fun drawSwapLines(first: Int, second: Int) {
-        val clearPaint = Paint(linePaint)
-        clearPaint.color = fillColor
-
-        val startXFirst = first * lineWidth
-        val startXSecond = second * lineWidth
-        val height = measuredHeight.toFloat()
-
-        drawCanvas.drawRect(startXFirst, 0f, startXFirst + lineWidth, height, clearPaint)
-        drawCanvas.drawRect(startXSecond, 0f, startXSecond + lineWidth, height, clearPaint)
-
-        drawCanvas.drawRect(
-            first * lineWidth,
-            DataUtils.map(
-                linesData.numbers[first],
-                linesData.numberMin,
-                linesData.numberMax,
-                minLineHeight,
-                maxLineHeight
-            ),
-            (first + 1) * (lineWidth),
-            height,
-            linePaint
-        )
-        drawCanvas.drawRect(
-            second * lineWidth,
-            DataUtils.map(
-                linesData.numbers[second],
-                linesData.numberMin,
-                linesData.numberMax,
-                minLineHeight,
-                maxLineHeight
-            ),
-            (second + 1) * (lineWidth),
-            height,
-            linePaint
-        )
-
-        invalidate()
-    }
-}
-
-private fun <T> MutableList<T>.swap(from: Int, to: Int) {
-    val tmp = this[from]
-    this[from] = this[to]
-    this[to] = tmp
 }

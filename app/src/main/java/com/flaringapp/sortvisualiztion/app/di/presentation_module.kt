@@ -30,7 +30,7 @@ val presentation_module = module {
     }
 
     scope(named<SortFragment>()) {
-        scoped { SortPresenter() as SortContract.PresenterContract }
+        scoped { SortPresenter(get()) as SortContract.PresenterContract }
     }
 
 }

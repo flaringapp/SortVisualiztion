@@ -11,8 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:textColor="@color/textColorWhite"
+        android:textSize="42sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/sortView"/>
+        app:layout_constraintBottom_toTopOf="@id/sortView"/>
 
     <com.flaringapp.sortvisualiztion.presentation.views.sort_view.SortView
         android:id="@+id/sortView"
