@@ -63,7 +63,7 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = SortMethodsAdapter { presenter.onModelClicked(it) }
             addItemDecoration(
-                RecyclerVerticalSpacingDecoration(context.dp(8).toInt())
+                RecyclerVerticalSpacingDecoration(context.dp(SORT_METHODS_SPACING).toInt())
             )
         }
 
@@ -74,6 +74,8 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
     }
 
     companion object {
+        private const val SORT_METHODS_SPACING = 24
+
         fun newInstance(array: IntArray): SortMethodsFragment {
             return SortMethodsFragment().apply {
                 arguments = Bundle().apply {
