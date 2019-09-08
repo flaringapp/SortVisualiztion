@@ -5,12 +5,21 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
 interface SortMethodsContract {
 
-    interface ViewContract : IBaseView {
+    interface ISortMethodModel {
+        val nameRes: Int
+        val method: SortMethod
+    }
 
+    interface ViewContract : IBaseView {
+        fun setModels(models: List<ISortMethodModel>)
+
+        fun showSort()
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
+        fun onModelClicked(methodModel: ISortMethodModel)
 
+        fun onSortClicked()
     }
 
 }

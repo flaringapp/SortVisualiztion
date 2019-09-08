@@ -43,6 +43,7 @@ ext {
     rxKotlinVersion = '2.4.0'
 
     //Ktx
+    ktxCoreVersion = '1.1.0-rc01'
     fragmentKtxVersion = '1.1.0-rc01'
 
     appDependencies = [
@@ -54,6 +55,7 @@ ext {
             koinScope               : "org.koin:koin-android-scope:$koinVersion",
             rxKotlin                : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid               : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            ktxCore                 : "androidx.core:core-ktx:$ktxCoreVersion",
             fragmentKtx             : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
             fragmentNavigationKtx   : "androidx.navigation:navigation-fragment-ktx:$ktxNavigationVersion",
             UINavigationKtx         : "androidx.navigation:navigation-ui-ktx:$ktxNavigationVersion",

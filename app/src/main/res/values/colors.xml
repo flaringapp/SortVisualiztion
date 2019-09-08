@@ -6,6 +6,8 @@
 
     <color name="textColor">#302626</color>
     <color name="buttonTextColor">#FFF2E7</color>
+    <color name="buttonSelectedTextColor">#FFEAE3</color>
 
     <color name="buttonColor">#BF7129</color>
+    <color name="buttonSelectedColor">#612E00</color>
 </resources>

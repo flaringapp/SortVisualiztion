@@ -12,4 +12,7 @@
     <string name="random">Random</string>
     <string name="sort_method">Sort method</string>
     <string name="sort">Sort</string>
+    <string name="sort_method_bubble">Bubble</string>
+    <string name="sort_method_bubble_flagged">Bubble with flag</string>
+    <string name="sort_method_selection">Selection</string>
 </resources>

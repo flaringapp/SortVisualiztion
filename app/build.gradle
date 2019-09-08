@@ -42,6 +42,8 @@ dependencies {
     implementation appDependencies.rxKotlin
     implementation appDependencies.rxAndroid
 
+    implementation appDependencies.ktxCore
+
     implementation appDependencies.fragmentNavigationKtx
     implementation appDependencies.UINavigationKtx
 
