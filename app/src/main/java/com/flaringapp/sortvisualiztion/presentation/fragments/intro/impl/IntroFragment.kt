@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
+import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.intro.IntroContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_intro.*
@@ -29,6 +30,7 @@ class IntroFragment: BaseFragment<IntroContract.PresenterContract>(), IntroContr
 
     override fun onInitPresenter() {
         presenter.view = this
+        presenter.init(activity as MainContract.AppNavigation)
     }
 
     private fun initViews() {

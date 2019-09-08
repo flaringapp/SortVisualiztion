@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.app.constants.Constants.ANIM_DURATION
+import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract.Companion.DATA_ARRAY_KEY
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.adapter.SortMethodsAdapter
@@ -40,6 +41,7 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
 
     override fun onInitPresenter() {
         presenter.view = this
+        presenter.init(activity as MainContract.AppNavigation)
     }
 
     override fun setModels(models: List<SortMethodsContract.ISortMethodModel>) {
