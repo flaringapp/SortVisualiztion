@@ -7,13 +7,13 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
 interface SortContract {
 
+    companion object {
+        const val SORT_DATA_KEY = "key_sort_data"
+    }
+
     interface ISortData: Parcelable {
         val array: IntArray
         val method: SortMethod
-    }
-
-    companion object {
-        const val SORT_DATA_KEY = "key_sort_data"
     }
 
     interface ViewContract : IBaseView {
@@ -22,7 +22,6 @@ interface SortContract {
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
-        fun sort(viewElementsCount: Int)
     }
 
 }

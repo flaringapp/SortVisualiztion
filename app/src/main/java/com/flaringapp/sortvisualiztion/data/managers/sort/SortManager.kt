@@ -17,4 +17,9 @@ interface SortManager {
         numbers: IntArray,
         updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
     ): Flowable<IntArray>
+
+    fun selectionSort(
+        numbers: IntArray,
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+    ): Flowable<IntArray>
 }

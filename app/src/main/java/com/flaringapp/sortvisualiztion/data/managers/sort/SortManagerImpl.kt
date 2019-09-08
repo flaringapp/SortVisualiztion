@@ -60,6 +60,30 @@ class SortManagerImpl : SortManager {
             .onComputationThread()
             .observeOn(Schedulers.io())
     }
+
+    override fun selectionSort(numbers: IntArray, updateFrequency: Int): Flowable<IntArray> {
+        return Flowable.create<IntArray>(
+            { emitter ->
+                var iteration = 0L
+
+                for (i in numbers.size downTo 0) {
+                    var max = i
+                    for (j in 0 until i) {
+                        iteration++
+                        if (numbers[j] > numbers[max])
+                            max = j
+                    }
+                    if (i != max) {
+                        numbers.swap(i, max)
+                    }
+
+                    if (iteration % updateFrequency == 0L) emitter.onNext(numbers)
+                }
+            },
+            BackpressureStrategy.LATEST
+        )
+
+    }
 }
 
 private inline fun IntArray.swap(from: Int, to: Int) {
