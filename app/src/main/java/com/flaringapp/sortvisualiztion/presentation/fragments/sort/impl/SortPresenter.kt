@@ -1,6 +1,6 @@
 package com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl
 
-import com.flaringapp.sortvisualiztion.data.managers.bubble_sort.BubbleSortManager
+import com.flaringapp.sortvisualiztion.data.managers.bubble_sort.SortManager
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BasePresenter
 import com.flaringapp.sortvisualiztion.utils.RxUtils
@@ -11,7 +11,7 @@ import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.subjects.PublishSubject
 
 class SortPresenter(
-    private val sortManager: BubbleSortManager
+    private val sortManager: SortManager
 ) : BasePresenter<SortContract.ViewContract>(), SortContract.PresenterContract {
 
     companion object {
@@ -38,7 +38,7 @@ class SortPresenter(
                 view?.updateViewSortArray(it)
             }
 
-        sortDisposables += sortManager.sort(randomArray())
+        sortDisposables += sortManager.bubbleSort(randomArray())
             .map { viewSubList(it, viewElementsCount) }
             .doOnNext { updateViewSubject.onNext(it) }
             .doOnError { updateViewSubject.onError(it) }
