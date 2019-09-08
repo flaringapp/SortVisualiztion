@@ -1,6 +1,6 @@
 package com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl
 
-import com.flaringapp.sortvisualiztion.data.managers.bubble_sort.SortManager
+import com.flaringapp.sortvisualiztion.data.managers.sort.SortManager
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BasePresenter
 import com.flaringapp.sortvisualiztion.utils.RxUtils

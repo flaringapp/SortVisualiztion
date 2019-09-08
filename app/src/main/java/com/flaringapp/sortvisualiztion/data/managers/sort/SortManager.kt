@@ -1,4 +1,4 @@
-package com.flaringapp.sortvisualiztion.data.managers.bubble_sort
+package com.flaringapp.sortvisualiztion.data.managers.sort
 
 import io.reactivex.Flowable
 
