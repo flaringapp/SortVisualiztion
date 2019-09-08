@@ -15,9 +15,13 @@
         <item name="android:layout_marginEnd">64dp</item>
     </style>
 
+    <style name="AppTitleText" parent="HeaderText">
+        <item name="android:textSize">@dimen/appTitleTextSize</item>
+    </style>
+
     <style name="ButtonStyle">
-        <item name="android:background">@drawable/bg_button</item>
-        <item name="android:foreground">@drawable/ripple</item>
+        <item name="android:background">@drawable/bg_button_rounded_full</item>
+        <item name="android:foreground">@drawable/ripple_rounded_full</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingStart">48dp</item>
@@ -26,4 +30,21 @@
         <item name="android:textColor">@color/buttonTextColor</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="SmallButtonStyle" parent="ButtonStyle">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:minWidth">@dimen/smallButtonMinWidth</item>
+        <item name="android:textSize">@dimen/smallButtonTextSize</item>
+    </style>
+
+    <style name="BottomButton" parent="ButtonStyle">
+        <item name="android:background">@drawable/bg_button_rounded_full_top</item>
+        <item name="android:foreground">@drawable/ripple_rounded_full_top</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
 </resources>
