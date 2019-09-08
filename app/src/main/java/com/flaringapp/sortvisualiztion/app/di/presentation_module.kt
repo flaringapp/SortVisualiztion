@@ -1,5 +1,8 @@
 package com.flaringapp.sortvisualiztion.app.di
 
+import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
+import com.flaringapp.sortvisualiztion.presentation.activities.main.impl.MainActivity
+import com.flaringapp.sortvisualiztion.presentation.activities.main.impl.MainPresenter
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.CreateArrayContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.impl.CreateArrayFragment
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.impl.CreateArrayPresenter
@@ -16,6 +19,10 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val presentation_module = module {
+
+    scope(named<MainActivity>()) {
+        scoped { MainPresenter() as MainContract.PresenterContract }
+    }
 
     scope(named<IntroFragment>()) {
         scoped { IntroPresenter() as IntroContract.PresenterContract }

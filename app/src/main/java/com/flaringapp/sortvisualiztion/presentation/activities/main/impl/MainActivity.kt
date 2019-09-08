@@ -5,12 +5,12 @@ import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.activities.main.navigation.Screen
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseActivity
-import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.currentScope
 
 class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContract.ViewContract,
     MainContract.AppNavigation {
 
-    override val presenter: MainContract.PresenterContract by inject()
+    override val presenter: MainContract.PresenterContract by currentScope.inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
