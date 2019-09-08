@@ -37,6 +37,4 @@ abstract class BaseDialog<T : IBasePresenter<*>> : DialogFragment(), IBaseView {
         presenter = null
         super.onDestroyView()
     }
-
-    abstract fun onInitPresenter()
 }

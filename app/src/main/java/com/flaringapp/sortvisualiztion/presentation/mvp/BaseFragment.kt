@@ -37,6 +37,4 @@ abstract class BaseFragment<T : IBasePresenter<*>> : Fragment(), IBaseView {
         presenter.release()
         super.onDestroyView()
     }
-
-    abstract fun onInitPresenter()
 }

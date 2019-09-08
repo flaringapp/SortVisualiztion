@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract.Companion.SORT_DATA_KEY
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_sort.*
 import org.koin.androidx.scope.currentScope
@@ -48,6 +49,12 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
     }
 
     companion object {
-        fun newInstance() = SortFragment()
+        fun newInstance(sortData: SortContract.ISortData): SortFragment {
+            return SortFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(SORT_DATA_KEY, sortData)
+                }
+            }
+        }
     }
 }

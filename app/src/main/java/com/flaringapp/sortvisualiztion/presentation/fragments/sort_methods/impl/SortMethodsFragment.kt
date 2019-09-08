@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.app.constants.Constants.ANIM_DURATION
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract.Companion.DATA_ARRAY_KEY
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.adapter.SortMethodsAdapter
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import com.flaringapp.sortvisualiztion.utils.view.RecyclerVerticalSpacingDecoration
-import com.flaringapp.sortvisualiztion.utils.view.ViewUtils
 import com.flaringapp.sortvisualiztion.utils.view.dp
 import kotlinx.android.synthetic.main.fragment_sort_type.*
 import org.koin.androidx.scope.currentScope
@@ -68,6 +68,16 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
         buttonSort.apply {
             doOnLayout { it.translationY = it.measuredHeight.toFloat() }
             setOnClickListener { presenter.onSortClicked() }
+        }
+    }
+
+    companion object {
+        fun newInstance(array: IntArray): SortMethodsFragment {
+            return SortMethodsFragment().apply {
+                arguments = Bundle().apply {
+                    putIntArray(DATA_ARRAY_KEY, array)
+                }
+            }
         }
     }
 }

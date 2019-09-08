@@ -21,7 +21,7 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
     }
 
     override fun onSortClicked() {
-        selectedMethod?.let { view?.openSortScreen(it) }
+
     }
 }
 

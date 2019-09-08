@@ -5,6 +5,10 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
 interface SortMethodsContract {
 
+    companion object {
+        const val DATA_ARRAY_KEY = "key_numbers_array"
+    }
+
     interface ISortMethodModel {
         val nameRes: Int
         val method: SortMethod
@@ -14,7 +18,6 @@ interface SortMethodsContract {
         fun setModels(models: List<ISortMethodModel>)
 
         fun showSort()
-        fun openSortScreen(sortMethod: SortMethod)
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {

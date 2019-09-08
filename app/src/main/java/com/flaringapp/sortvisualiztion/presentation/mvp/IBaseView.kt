@@ -4,4 +4,6 @@ import android.content.Context
 
 interface IBaseView {
     val viewContext: Context?
+
+    fun onInitPresenter()
 }

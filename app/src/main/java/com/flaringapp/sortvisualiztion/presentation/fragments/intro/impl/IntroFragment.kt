@@ -33,4 +33,8 @@ class IntroFragment: BaseFragment<IntroContract.PresenterContract>(), IntroContr
     private fun initViews() {
 
     }
+
+    companion object {
+        fun newInstance() = IntroFragment()
+    }
 }
