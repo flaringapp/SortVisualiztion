@@ -9,9 +9,9 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.intro.impl.IntroPr
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl.SortFragment
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl.SortPresenter
-import com.flaringapp.sortvisualiztion.presentation.fragments.sort_type.SortTypeContract
-import com.flaringapp.sortvisualiztion.presentation.fragments.sort_type.impl.SortTypeFragment
-import com.flaringapp.sortvisualiztion.presentation.fragments.sort_type.impl.SortTypePresenter
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl.SortMethodsFragment
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl.SortMethodsPresenter
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -25,8 +25,8 @@ val presentation_module = module {
         scoped { CreateArrayPresenter() as CreateArrayContract.PresenterContract }
     }
 
-    scope(named<SortTypeFragment>()) {
-        scoped { SortTypePresenter() as SortTypeContract.PresenterContract }
+    scope(named<SortMethodsFragment>()) {
+        scoped { SortMethodsPresenter() as SortMethodsContract.PresenterContract }
     }
 
     scope(named<SortFragment>()) {

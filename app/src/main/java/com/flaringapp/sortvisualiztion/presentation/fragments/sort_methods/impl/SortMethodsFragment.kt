@@ -1,18 +1,18 @@
-package com.flaringapp.sortvisualiztion.presentation.fragments.sort_type.impl
+package com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
-import com.flaringapp.sortvisualiztion.presentation.fragments.sort_type.SortTypeContract
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import org.koin.androidx.scope.currentScope
 
-class SortTypeFragment: BaseFragment<SortTypeContract.PresenterContract>(),
-    SortTypeContract.ViewContract {
+class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>(),
+    SortMethodsContract.ViewContract {
 
-    override val presenter: SortTypeContract.PresenterContract by currentScope.inject()
+    override val presenter: SortMethodsContract.PresenterContract by currentScope.inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

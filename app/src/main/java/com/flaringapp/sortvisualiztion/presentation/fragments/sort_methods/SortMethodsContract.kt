@@ -1,9 +1,9 @@
-package com.flaringapp.sortvisualiztion.presentation.fragments.sort_type
+package com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods
 
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBasePresenter
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
-interface SortTypeContract {
+interface SortMethodsContract {
 
     interface ViewContract : IBaseView {
 
