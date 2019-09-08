@@ -40,6 +40,7 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
 
     override fun onModelClicked(methodModel: SortMethodsContract.ISortMethodModel) {
         selectedMethod = methodModel.method
+        view?.showSort()
     }
 
     override fun onSortClicked() {

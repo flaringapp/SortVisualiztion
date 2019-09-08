@@ -26,6 +26,8 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
 
     override val presenter: SortMethodsContract.PresenterContract by currentScope.inject()
 
+    private var sortShown = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +38,7 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
+        sortShown = false
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -49,6 +52,7 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
     }
 
     override fun showSort() {
+        sortShown = true
         ValueAnimator.ofFloat(buttonSort.translationY, 0f)
             .apply {
                 interpolator = DecelerateInterpolator()
