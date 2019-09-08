@@ -33,7 +33,7 @@ class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
             return
         }
 
-        appNavigation?.openScreen(Screen.SORT_METHODS, array.toTypedArray())
+        appNavigation?.openScreen(Screen.SORT_METHODS, array.toIntArray())
     }
 
     private fun randomArray(): ArrayList<Int> {
