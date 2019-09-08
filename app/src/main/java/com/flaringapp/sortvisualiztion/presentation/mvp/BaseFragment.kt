@@ -2,13 +2,11 @@ package com.flaringapp.sortvisualiztion.presentation.mvp
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<T : IBasePresenter<*>> : Fragment(), IBaseView {
+    abstract class BaseFragment<T : IBasePresenter<*>> : Fragment(), IBaseView {
 
     abstract val presenter: T
 

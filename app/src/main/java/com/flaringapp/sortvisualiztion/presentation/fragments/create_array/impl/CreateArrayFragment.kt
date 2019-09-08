@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.CreateArrayContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
+import kotlinx.android.synthetic.main.fragment_create_array.*
 import org.koin.androidx.scope.currentScope
 
 class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>(), CreateArrayContract.ViewContract {
@@ -30,8 +31,12 @@ class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>()
         presenter.view = this
     }
 
-    private fun initViews() {
+    override fun updateArrayText(text: String) {
+        arrayText.text = text
+    }
 
+    private fun initViews() {
+        buttonRandom.setOnClickListener { presenter.onRandomClicked() }
     }
 
     companion object {

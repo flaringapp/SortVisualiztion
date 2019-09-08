@@ -18,7 +18,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -46,6 +46,8 @@ ext {
     ktxCoreVersion = '1.1.0-rc01'
     fragmentKtxVersion = '1.1.0-rc01'
 
+    toastyVersion = '1.4.2'
+
     appDependencies = [
             appCompat               : "androidx.appcompat:appcompat:$appCompatVersion",
             constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
@@ -59,5 +61,6 @@ ext {
             fragmentKtx             : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
             fragmentNavigationKtx   : "androidx.navigation:navigation-fragment-ktx:$ktxNavigationVersion",
             UINavigationKtx         : "androidx.navigation:navigation-ui-ktx:$ktxNavigationVersion",
+            toasty                  : "com.github.GrenderG:Toasty:${toastyVersion}",
     ]
 }

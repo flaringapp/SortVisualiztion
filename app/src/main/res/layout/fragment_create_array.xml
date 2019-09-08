@@ -24,7 +24,6 @@
         android:text="@string/array_creation_subtitle"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-
     <RelativeLayout
         android:id="@+id/textScrollViewContainer"
         android:layout_width="match_parent"

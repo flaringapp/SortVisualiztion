@@ -48,4 +48,6 @@ dependencies {
     implementation appDependencies.UINavigationKtx
 
     implementation appDependencies.fragmentKtx
+
+    implementation appDependencies.toasty
 }
