@@ -15,7 +15,7 @@ interface CreateArrayContract {
 
         fun onRandomClicked()
 
-        fun onSortClicked()
+        fun onContinueClicked()
     }
 
 }

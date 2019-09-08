@@ -27,7 +27,7 @@ class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
         view?.updateArrayText(array.format())
     }
 
-    override fun onSortClicked() {
+    override fun onContinueClicked() {
         if (array.size < 2) {
             view?.showWarningToast(R.string.too_small_array)
             return

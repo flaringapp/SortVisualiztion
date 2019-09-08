@@ -39,6 +39,7 @@ class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>()
 
     private fun initViews() {
         buttonRandom.setOnClickListener { presenter.onRandomClicked() }
+        buttonContinue.setOnClickListener { presenter.onContinueClicked() }
     }
 
     companion object {
