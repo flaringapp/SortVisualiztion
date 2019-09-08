@@ -10,6 +10,6 @@ interface IBaseView {
     fun onInitPresenter()
 
     fun showWarningToast(@StringRes textRes: Int) {
-        viewContext?.let { Toasty.error(it, textRes) }
+        viewContext?.let { Toasty.warning(it, textRes).show() }
     }
 }
