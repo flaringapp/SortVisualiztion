@@ -66,7 +66,7 @@ class SortManagerImpl : SortManager {
             { emitter ->
                 var iteration = 0L
 
-                for (i in numbers.size downTo 0) {
+                for (i in numbers.size - 1 downTo 0) {
                     var max = i
                     for (j in 0 until i) {
                         iteration++
@@ -79,6 +79,9 @@ class SortManagerImpl : SortManager {
 
                     if (iteration % updateFrequency == 0L) emitter.onNext(numbers)
                 }
+
+                emitter.onNext(numbers)
+                emitter.onComplete()
             },
             BackpressureStrategy.LATEST
         )
