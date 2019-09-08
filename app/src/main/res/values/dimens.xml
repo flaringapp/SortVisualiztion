@@ -8,6 +8,6 @@
 
     <dimen name="appTitleTextSize">54sp</dimen>
     <dimen name="headerTextSize">42sp</dimen>
-    <dimen name="buttonTextSize">24sp</dimen>
-    <dimen name="smallButtonTextSize">20sp</dimen>
+    <dimen name="buttonTextSize">28sp</dimen>
+    <dimen name="smallButtonTextSize">22sp</dimen>
 </resources>
