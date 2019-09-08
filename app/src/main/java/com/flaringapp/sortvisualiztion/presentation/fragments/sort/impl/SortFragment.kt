@@ -27,7 +27,7 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         initViews()
         super.onViewCreated(view, savedInstanceState)
 
-        sortView.post { presenter.sort(500) }
+        sortView.post { presenter.sort(100) }
     }
 
     override fun onInitPresenter() {

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Sort visualiztion</string>
+    <string name="app_name">Sort visualizer</string>
+    <string name="start">Start</string>
 </resources>
