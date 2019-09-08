@@ -109,8 +109,8 @@ class SortView : View {
                     numbers!![i],
                     minNumber,
                     maxNumber,
-                    height * minHeight,
-                    height * maxHeight
+                    height * (1f - minHeight),
+                    height * (1f - maxHeight)
                 ),
                 lineWidth * (i + 1),
                 height,
