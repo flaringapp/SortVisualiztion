@@ -6,18 +6,27 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
+import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.utils.DataUtils
 import java.lang.Exception
 
 
 class SortView : View {
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+    constructor(context: Context) : super(context) {
+        init(context)
+    }
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init(context, attrs)
+    }
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    )
+    ) {
+        init(context, attrs)
+    }
 
     init {
         setWillNotDraw(false)
@@ -50,6 +59,11 @@ class SortView : View {
     private var minNumber: Int = 0
     private var maxNumber: Int = 0
 
+    override fun onDraw(canvas: Canvas) {
+        drawLines(canvas)
+        super.onDraw(canvas)
+    }
+
     fun setLineColor(@ColorInt color: Int) {
         if (linePaint.color == color) return
 
@@ -71,9 +85,15 @@ class SortView : View {
         invalidate()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        drawLines(canvas)
-        super.onDraw(canvas)
+    private fun init(context: Context, attrs: AttributeSet? = null) {
+        val typedArray = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.SortView
+        )
+
+        setLineColor(typedArray.getColor(R.styleable.SortView_lineColor, Color.BLACK))
+
+        typedArray.recycle()
     }
 
     private fun drawLines(canvas: Canvas) {

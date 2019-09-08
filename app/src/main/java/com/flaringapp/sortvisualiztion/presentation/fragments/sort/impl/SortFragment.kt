@@ -42,8 +42,6 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
     }
 
     private fun initViews() {
-        sortView.setBackgroundColor(Color.BLACK)
-        sortView.setLineColor(Color.WHITE)
     }
 
     companion object {

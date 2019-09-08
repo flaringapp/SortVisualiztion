@@ -10,4 +10,6 @@
 
     <color name="buttonColor">#BF7129</color>
     <color name="buttonSelectedColor">#612E00</color>
+
+    <color name="drawLineColor">#000</color>
 </resources>
