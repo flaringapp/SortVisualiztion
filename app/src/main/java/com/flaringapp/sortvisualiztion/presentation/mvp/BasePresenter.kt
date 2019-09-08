@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 
 abstract class BasePresenter<T : IBaseView>: IBasePresenter<T> {
 
-    override var view: T? = null
+    final override var view: T? = null
 
     override fun onCreate(arguments: Bundle?, savedInstanceState: Bundle?) {}
     override fun saveInstanceState(outState: Bundle) {}

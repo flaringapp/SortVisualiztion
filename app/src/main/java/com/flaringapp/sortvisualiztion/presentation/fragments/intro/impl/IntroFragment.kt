@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.fragments.intro.IntroContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
+import kotlinx.android.synthetic.main.fragment_intro.*
 import org.koin.androidx.scope.currentScope
 
 class IntroFragment: BaseFragment<IntroContract.PresenterContract>(), IntroContract.ViewContract {
@@ -31,7 +32,7 @@ class IntroFragment: BaseFragment<IntroContract.PresenterContract>(), IntroContr
     }
 
     private fun initViews() {
-
+        buttonStart.setOnClickListener { presenter.onStartClicked() }
     }
 
     companion object {
