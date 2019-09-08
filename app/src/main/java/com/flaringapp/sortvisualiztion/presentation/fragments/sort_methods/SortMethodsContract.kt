@@ -1,5 +1,6 @@
 package com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods
 
+import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBasePresenter
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
@@ -21,6 +22,8 @@ interface SortMethodsContract {
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
+        fun init(appNavigation: MainContract.AppNavigation)
+
         fun onModelClicked(methodModel: ISortMethodModel)
 
         fun onSortClicked()
