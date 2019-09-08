@@ -14,6 +14,7 @@ interface SortMethodsContract {
         fun setModels(models: List<ISortMethodModel>)
 
         fun showSort()
+        fun openSortScreen(sortMethod: SortMethod)
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {

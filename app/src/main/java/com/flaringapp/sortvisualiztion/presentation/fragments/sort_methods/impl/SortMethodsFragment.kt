@@ -65,6 +65,9 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
             )
         }
 
-        buttonSort.doOnLayout { it.translationY = it.measuredHeight.toFloat() }
+        buttonSort.apply {
+            doOnLayout { it.translationY = it.measuredHeight.toFloat() }
+            setOnClickListener { presenter.onSortClicked() }
+        }
     }
 }

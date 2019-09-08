@@ -19,6 +19,10 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
     override fun onModelClicked(methodModel: SortMethodsContract.ISortMethodModel) {
         selectedMethod = methodModel.method
     }
+
+    override fun onSortClicked() {
+        selectedMethod?.let { view?.openSortScreen(it) }
+    }
 }
 
 val models = listOf(
