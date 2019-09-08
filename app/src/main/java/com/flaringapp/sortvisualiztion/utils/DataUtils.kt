@@ -7,6 +7,10 @@ object DataUtils {
     }
 
     fun map(x: Int, a1: Int, a2: Int, b1: Float, b2: Float): Float {
-        return b1 + ((x - a1) * (b2 - b1) / (a2 - a1))
+        return b1 + ((x - a1).toFloat() * (b2 - b1) / (a2 - a1).toFloat())
     }
+}
+
+fun IntArray.swap(from: Int, to: Int) {
+    this[from] = this[to].also { this[to] = this[from] }
 }

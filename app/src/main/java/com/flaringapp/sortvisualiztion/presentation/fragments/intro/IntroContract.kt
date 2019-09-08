@@ -8,7 +8,7 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 interface IntroContract {
 
     interface ViewContract: IBaseView {
-
+        fun updateSortAnimation(array: IntArray)
     }
 
     interface PresenterContract: IBasePresenter<ViewContract> {

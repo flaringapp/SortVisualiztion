@@ -33,8 +33,14 @@ class IntroFragment: BaseFragment<IntroContract.PresenterContract>(), IntroContr
         presenter.init(activity as MainContract.AppNavigation)
     }
 
+    override fun updateSortAnimation(array: IntArray) {
+        sortView?.invalidateNumbers(array)
+    }
+
     private fun initViews() {
         buttonStart.setOnClickListener { presenter.onStartClicked() }
+
+        sortView.minHeight = 0.2f
     }
 
     companion object {

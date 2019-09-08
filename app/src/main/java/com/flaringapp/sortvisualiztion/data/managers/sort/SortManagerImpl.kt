@@ -1,6 +1,7 @@
 package com.flaringapp.sortvisualiztion.data.managers.sort
 
 import com.flaringapp.sortvisualiztion.utils.onComputationThread
+import com.flaringapp.sortvisualiztion.utils.swap
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
@@ -87,8 +88,4 @@ class SortManagerImpl : SortManager {
         )
 
     }
-}
-
-private inline fun IntArray.swap(from: Int, to: Int) {
-    this[from] = this[to].also { this[to] = this[from] }
 }
