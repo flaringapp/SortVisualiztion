@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:gravity="end|center_vertical"
-        android:minWidth="300dp"
+        android:minWidth="250dp"
         android:textColor="@color/buttonTextColor"
         android:textSize="28sp"
         tools:text="Some sort method">
