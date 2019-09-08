@@ -3,6 +3,7 @@
     <dimen name="rounded_full">200dp</dimen>
     <dimen name="rounded">12dp</dimen>
 
+    <dimen name="bottomButtonMinWidth">200dp</dimen>
     <dimen name="smallButtonMinWidth">125dp</dimen>
 
     <dimen name="appTitleTextSize">54sp</dimen>

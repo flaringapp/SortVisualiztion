@@ -2,6 +2,7 @@
     <string name="app_name">Sort visualizer</string>
 
     <string name="array_creation_subtitle" translatable="false">[ . . . . . . ]</string>
+    <string name="sort_method_subtitle" translatable="false"><![CDATA[< - - - - - - >]]></string>
 
     <string name="start">Start</string>
     <string name="array_creation">Array creation</string>
@@ -9,4 +10,6 @@
     <string name="view_array">Click to view array</string>
     <string name="edit">Edit</string>
     <string name="random">Random</string>
+    <string name="sort_method">Sort method</string>
+    <string name="sort">Sort</string>
 </resources>
