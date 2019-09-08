@@ -26,7 +26,14 @@ class MainPresenter : BasePresenter<MainContract.ViewContract>(),
         this.fragmentManager = fragmentManager
     }
 
-    override fun onNavigationRequested(screen: Screen, data: Any?, inAnim: Int, outAnim: Int) {
+    override fun onNavigationRequested(
+        screen: Screen,
+        data: Any?,
+        inAnim: Int,
+        outAnim: Int,
+        popInAnim: Int,
+        popOutAnim: Int
+    ) {
         val fragment = when (screen) {
             Screen.INTRO -> IntroFragment.newInstance()
             Screen.CREATE_ARRAY -> CreateArrayFragment.newInstance()
@@ -35,8 +42,8 @@ class MainPresenter : BasePresenter<MainContract.ViewContract>(),
         }
 
         fragmentManager?.commit {
+            setCustomAnimations(inAnim, outAnim, popInAnim, popOutAnim)
             replace(R.id.fragmentContainer, fragment)
-            setCustomAnimations(inAnim, outAnim, inAnim, outAnim)
             addToBackStack(null)
         }
     }

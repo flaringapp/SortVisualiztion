@@ -5,9 +5,9 @@
     android:fillBefore="true"
     android:interpolator="@android:anim/decelerate_interpolator">
     <translate
-        android:fromXDelta="0"
-        android:toXDelta="-50%" />
+        android:fromXDelta="-50%"
+        android:toXDelta="0" />
     <alpha
-        android:fromAlpha="1.0"
-        android:toAlpha="0.0" />
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
 </set>

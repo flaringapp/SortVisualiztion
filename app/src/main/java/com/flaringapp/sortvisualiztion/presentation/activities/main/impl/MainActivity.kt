@@ -1,9 +1,11 @@
 package com.flaringapp.sortvisualiztion.presentation.activities.main.impl
 
 import android.os.Bundle
+import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.activities.main.navigation.Screen
+import com.flaringapp.sortvisualiztion.presentation.fragments.intro.impl.IntroFragment
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseActivity
 import org.koin.androidx.scope.currentScope
 
@@ -19,7 +21,9 @@ class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContrac
         onInitPresenter()
         presenter.onStart()
 
-        openScreen(Screen.INTRO, inAnim = 0)
+        supportFragmentManager.commit {
+            add(R.id.fragmentContainer, IntroFragment.newInstance())
+        }
     }
 
     override fun onInitPresenter() {
@@ -27,7 +31,14 @@ class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContrac
         presenter.init(supportFragmentManager)
     }
 
-    override fun openScreen(screen: Screen, data: Any?, inAnim: Int, outAnim: Int) {
-        presenter.onNavigationRequested(screen, data, inAnim, outAnim)
+    override fun openScreen(
+        screen: Screen,
+        data: Any?,
+        inAnim: Int,
+        outAnim: Int,
+        popInAnim: Int,
+        popOutAnim: Int
+    ) {
+        presenter.onNavigationRequested(screen, data, inAnim, outAnim, popInAnim, popOutAnim)
     }
 }
