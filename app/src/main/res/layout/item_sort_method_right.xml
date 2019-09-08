@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    style="@style/ButtonRight"
-    android:minWidth="300dp"
-    android:textColor="@color/buttonTextColor"
-    android:textSize="22sp"
-    android:gravity="end|center_vertical"
-    android:layout_gravity="end"
-    tools:text="Some sort method">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-</Button>
+    <Button
+        android:id="@+id/button"
+        style="@style/ButtonRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="end|center_vertical"
+        android:minWidth="300dp"
+        android:textColor="@color/buttonTextColor"
+        android:textSize="22sp"
+        tools:text="Some sort method">
+
+    </Button>
+
+</FrameLayout>
