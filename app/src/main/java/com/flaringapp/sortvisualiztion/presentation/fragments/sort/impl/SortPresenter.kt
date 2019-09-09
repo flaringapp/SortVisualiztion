@@ -29,7 +29,7 @@ class SortPresenter(
         private const val VIEW_UPDATE_DELAY = 100L
         private const val VIEW_ELEMENTS_COUNT = 100
 
-        private const val LOG_MAX_ELEMENTS_COUNT = 8
+        private const val LOG_MAX_ELEMENTS_COUNT = 15
         private const val LOG_MAX_UPDATE_SIZE = 250
         private const val LOG_UPDATE_DELAY = 250L
 

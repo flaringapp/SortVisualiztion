@@ -91,7 +91,10 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
 
     private fun initViews() {
         sortLogsButton.setOnClickListener { presenter.onLogsClicked() }
-        sortView.clear()
+        sortView.apply {
+            clear()
+            minHeight = 0.2f
+        }
     }
 
     companion object {

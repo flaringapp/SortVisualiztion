@@ -47,7 +47,11 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
         if (selectedMethod == null) return
         appNavigation?.openScreen(
             Screen.SORT,
-            SortData(getString(selectedMethod!!.nameRes)!!, selectedMethod!!.method, dataArray)
+            SortData(
+                getString(selectedMethod!!.nameRes)!!,
+                selectedMethod!!.method,
+                dataArray.clone()
+            )
         )
     }
 }

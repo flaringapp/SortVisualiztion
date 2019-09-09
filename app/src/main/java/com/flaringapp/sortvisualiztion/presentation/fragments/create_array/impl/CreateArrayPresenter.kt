@@ -15,6 +15,11 @@ class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
 
     private var array: ArrayList<Int> = ArrayList()
 
+    override fun onStart() {
+        super.onStart()
+        view?.updateArrayText(array.format())
+    }
+
     override fun release() {
         appNavigation = null
         super.release()

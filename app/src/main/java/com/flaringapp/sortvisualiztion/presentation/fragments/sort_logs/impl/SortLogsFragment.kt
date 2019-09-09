@@ -40,7 +40,14 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
     }
 
     override fun addNewLog(log: String) {
-        (logsRecycler.adapter as SortLogsAdapter).addModel(log)
+        logsRecycler?.apply {
+            (adapter as SortLogsAdapter).addModel(log)
+            val lastVisiblePosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+            val itemsCount = adapter!!.itemCount
+            if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLLRENCE) {
+                smoothScrollToPosition(itemsCount - 1)
+            }
+        }
     }
 
     override fun goBack() {
@@ -63,6 +70,8 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
     }
 
     companion object {
+        private const val SCROLL_ITEM_TOLLRENCE = 1
+
         fun newInstance(): SortLogsFragment {
             return SortLogsFragment()
         }
