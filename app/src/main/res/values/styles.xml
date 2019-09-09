@@ -14,11 +14,11 @@
 
     <style name="MyText">
         <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 
     <style name="HeaderText" parent="MyText">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/textColor</item>
         <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:layout_marginStart">64dp</item>
         <item name="android:layout_marginEnd">64dp</item>
@@ -54,8 +54,19 @@
     </style>
 
     <style name="ButtonSmall" parent="ButtonSmallPadding">
-        <item name="android:minWidth">@dimen/smallButtonMinWidth</item>
+        <item name="android:minWidth">@dimen/smallButtonMinSize</item>
         <item name="android:textSize">@dimen/smallButtonTextSize</item>
+    </style>
+
+    <style name="ButtonVertical" parent="ButtonSmall">
+        <item name="android:background">@drawable/bg_button_rounded_full_top</item>
+        <item name="android:foreground">@drawable/ripple_rounded_full_top</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">@dimen/smallButtonMinSize</item>
     </style>
 
     <style name="ButtonBottom" parent="ButtonSmallPadding">
