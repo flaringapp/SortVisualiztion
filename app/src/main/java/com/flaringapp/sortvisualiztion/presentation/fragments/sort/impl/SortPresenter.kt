@@ -31,7 +31,7 @@ class SortPresenter(
         private const val VIEW_UPDATE_DELAY = 50
         private const val VIEW_ELEMENTS_COUNT = 100
 
-        private const val TIMER_UPDATE_DELAY = 50L
+        private const val TIMER_UPDATE_DELAY = 43L
 
         private val countDown = arrayOf("3", "2", "1")
     }
