@@ -12,6 +12,9 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.intro.impl.IntroPr
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl.SortFragment
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl.SortPresenter
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogsContract
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.impl.SortLogsFragment
+import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.impl.SortLogsPresenter
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethodsContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl.SortMethodsFragment
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl.SortMethodsPresenter
@@ -38,6 +41,10 @@ val presentation_module = module {
 
     scope(named<SortFragment>()) {
         scoped { SortPresenter(get()) as SortContract.PresenterContract }
+    }
+
+    scope(named<SortLogsFragment>()) {
+        scoped { SortLogsPresenter() as SortLogsContract.PresenterContract }
     }
 
 }
