@@ -12,17 +12,26 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="HeaderText">
+    <style name="MyText">
+        <item name="android:fontFamily">@font/lato_bold</item>
+    </style>
+
+    <style name="HeaderText" parent="MyText">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textSize">@dimen/headerTextSize</item>
-        <item name="android:fontFamily">@font/lato_bold</item>
         <item name="android:layout_marginStart">64dp</item>
         <item name="android:layout_marginEnd">64dp</item>
     </style>
 
     <style name="AppTitleText" parent="HeaderText">
         <item name="android:textSize">@dimen/appTitleTextSize</item>
+    </style>
+
+    <style name="SortInfoText" parent="MyText">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">16dp</item>
     </style>
 
     <style name="ButtonStyle">

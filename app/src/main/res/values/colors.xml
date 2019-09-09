@@ -7,6 +7,7 @@
     <color name="background">#EB8B7D</color>
 
     <color name="textColor">#302626</color>
+    <color name="secondaryTextColor">#9A1E0D</color>
     <color name="buttonTextColor">#FFF2E7</color>
     <color name="buttonSelectedTextColor">#FFEAE3</color>
 

@@ -52,9 +52,14 @@ class SortPresenter(
 
     override fun onStart() {
         super.onStart()
+
         formatter = SimpleDateFormat("mm:ss:SSS", view!!.viewContext!!.getCurrentLocale()).apply {
             timeZone = TimeZone.getTimeZone("UTC")
         }
+
+        view?.setSortMethodText(sortData.methodName)
+        view?.setArraySizeText("${getString(R.string.array_length)}: ${sortData.array.size}")
+
         startCountDown()
     }
 

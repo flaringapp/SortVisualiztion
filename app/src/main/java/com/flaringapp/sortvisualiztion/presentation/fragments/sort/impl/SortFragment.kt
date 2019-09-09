@@ -40,6 +40,14 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         header?.text = text
     }
 
+    override fun setArraySizeText(text: String) {
+        arraySizeText.text = text
+    }
+
+    override fun setSortMethodText(text: String) {
+        sortMethodText.text = text
+    }
+
     override fun updateViewSortArray(array: IntArray) {
         sortView.invalidateNumbers(array)
     }

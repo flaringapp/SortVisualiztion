@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class SortData(
-    override val array: IntArray,
-    override val method: SortMethod
+    override val methodName: String,
+    override val method: SortMethod,
+    override val array: IntArray
 ) : SortContract.ISortData

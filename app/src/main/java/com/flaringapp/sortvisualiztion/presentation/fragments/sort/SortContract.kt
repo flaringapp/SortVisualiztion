@@ -13,13 +13,18 @@ interface SortContract {
     }
 
     interface ISortData: Parcelable {
-        val array: IntArray
+        val methodName: String
         val method: SortMethod
+        val array: IntArray
     }
 
     interface ViewContract : IBaseView {
         fun updateCaptionText(@StringRes textRes: Int)
         fun updateCaptionText(text: String)
+
+        fun setArraySizeText(text: String)
+        fun setSortMethodText(text: String)
+
         fun updateViewSortArray(array: IntArray)
     }
 

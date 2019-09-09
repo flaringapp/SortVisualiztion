@@ -17,7 +17,7 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
     private lateinit var dataArray: IntArray
     private var appNavigation: MainContract.AppNavigation? = null
 
-    private var selectedMethod: SortMethod? = null
+    private var selectedMethod: SortMethodsContract.ISortMethodModel? = null
 
     override fun onCreate(arguments: Bundle?, savedInstanceState: Bundle?) {
         super.onCreate(arguments, savedInstanceState)
@@ -39,13 +39,16 @@ class SortMethodsPresenter : BasePresenter<SortMethodsContract.ViewContract>(),
     }
 
     override fun onModelClicked(methodModel: SortMethodsContract.ISortMethodModel) {
-        selectedMethod = methodModel.method
+        selectedMethod = methodModel
         view?.showSort()
     }
 
     override fun onSortClicked() {
         if (selectedMethod == null) return
-        appNavigation?.openScreen(Screen.SORT, SortData(dataArray, selectedMethod!!))
+        appNavigation?.openScreen(
+            Screen.SORT,
+            SortData(getString(selectedMethod!!.nameRes)!!, selectedMethod!!.method, dataArray)
+        )
     }
 }
 
