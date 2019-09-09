@@ -16,4 +16,6 @@
     <string name="sort_method_bubble_flagged">Bubble with flag</string>
     <string name="sort_method_selection">Selection</string>
     <string name="too_small_array">Add at least 2 elements to your array</string>
+    <string name="sort_completed">Sort completed</string>
+    <string name="minutes_short">m</string>
 </resources>

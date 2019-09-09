@@ -6,7 +6,7 @@
     android:background="@drawable/bg_sort">
 
     <TextView
-        android:id="@+id/timer"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/HeaderText"

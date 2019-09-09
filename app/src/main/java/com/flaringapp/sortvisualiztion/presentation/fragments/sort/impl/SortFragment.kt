@@ -1,6 +1,5 @@
 package com.flaringapp.sortvisualiztion.presentation.fragments.sort.impl
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,15 +32,20 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         presenter.view = this
     }
 
+    override fun updateCaptionText(textRes: Int) {
+        header?.setText(textRes)
+    }
+
+    override fun updateCaptionText(text: String) {
+        header?.text = text
+    }
+
     override fun updateViewSortArray(array: IntArray) {
         sortView.invalidateNumbers(array)
     }
 
-    override fun onSortCompleted() {
-        timer.text = "Sort completed"
-    }
-
     private fun initViews() {
+
     }
 
     companion object {

@@ -2,6 +2,7 @@ package com.flaringapp.sortvisualiztion.utils
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
@@ -23,6 +24,13 @@ object RxUtils {
     }
 
 }
+
+fun<T> Observable<T>.onApiThread() = this
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.io())
+
+fun<T> Observable<T>.observeOnUI() = this
+    .observeOn(AndroidSchedulers.mainThread())
 
 fun<T> Flowable<T>.onApiThread() = this
     .subscribeOn(Schedulers.io())
