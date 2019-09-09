@@ -8,6 +8,9 @@ import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.ArrayEdit
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseDialog
 import kotlinx.android.synthetic.main.dialog_edit_array.*
 import org.koin.androidx.scope.currentScope
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.view.inputmethod.InputMethodManager
+
 
 class ArrayEditDialog: BaseDialog<ArrayEditContract.PresenterContract>(),
     ArrayEditContract.ViewContract {
@@ -65,7 +68,8 @@ class ArrayEditDialog: BaseDialog<ArrayEditContract.PresenterContract>(),
 
         numberInput.post {
             numberInput?.requestFocus()
-            dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+            (context!!.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
+                .showSoftInput(numberInput, 0)
         }
     }
 

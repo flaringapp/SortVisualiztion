@@ -3,6 +3,7 @@
 
     <string name="array_creation_subtitle" translatable="false">[ . . . . . . ]</string>
     <string name="sort_method_subtitle" translatable="false"><![CDATA[< - - - - - - >]]></string>
+    <string name="edit_array_subtitle" translatable="false">( . . . | . . . )</string>
 
     <string name="start">Start</string>
     <string name="array_creation">Array creation</string>
@@ -26,7 +27,6 @@
     <string name="log_too_big_update_array">Array is too big to log each iteration. Array will be logged once in %1$d milliseconds</string>
     <string name="sort_completed_in">Sorting completed in</string>
     <string name="edit_array">Edit array</string>
-    <string name="edit_array_subtitle">( . . | . . )</string>
     <string name="add">Add</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
