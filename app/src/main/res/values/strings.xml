@@ -31,4 +31,5 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="edit_array_max_editing_count">You can\'t open edit dialog after reaching max editing size (%1$d)</string>
+    <string name="final_array">Final array</string>
 </resources>

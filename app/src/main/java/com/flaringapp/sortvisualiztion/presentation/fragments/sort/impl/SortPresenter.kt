@@ -40,6 +40,8 @@ class SortPresenter(
 
     private lateinit var sortData: SortContract.ISortData
 
+    private var currentSortArray: IntArray? = null
+
     private var formatter: DateFormat? = null
 
     private var countDownDisposable: Disposable? = null
@@ -129,6 +131,7 @@ class SortPresenter(
                 onNext = { view?.updateViewSortArray(it) },
                 onComplete = {
                     timerDisposable?.dispose()
+                    view?.updateViewSortArray(currentSortArray!!.viewSubList(VIEW_ELEMENTS_COUNT))
                     view?.updateCaptionText(R.string.sort_completed)
                 }
             )
@@ -148,12 +151,18 @@ class SortPresenter(
                     view?.addLog(
                         "${getString(R.string.sort_completed_in)!!} ${formatter!!.format(System.currentTimeMillis() - startTime)}"
                     )
+                    view?.addLog(
+                        "${getString(R.string.final_array)}: ${currentSortArray!!.viewSubList(
+                            LOG_MAX_ELEMENTS_COUNT
+                        ).format()}"
+                    )
                 }
             )
 
         sortDisposable = sortData.method.toAction(sortData.array)
             .map { it.viewSubList(VIEW_ELEMENTS_COUNT) }
             .doOnNext {
+                currentSortArray = it
                 updateViewSubject.onNext(
                     it.viewSubList(VIEW_ELEMENTS_COUNT)
                 )
