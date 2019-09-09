@@ -8,6 +8,9 @@
 
     <dimen name="appTitleTextSize">54sp</dimen>
     <dimen name="headerTextSize">42sp</dimen>
+    <dimen name="dialogHeaderTextSize">36sp</dimen>
     <dimen name="buttonTextSize">28sp</dimen>
     <dimen name="smallButtonTextSize">22sp</dimen>
+
+    <dimen name="blur_radius">20px</dimen>
 </resources>

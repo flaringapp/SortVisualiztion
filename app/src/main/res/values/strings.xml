@@ -17,7 +17,7 @@
     <string name="sort_method_bubble_flagged">Bubble with flag</string>
     <string name="sort_method_selection">Selection</string>
 
-    <string name="too_small_array">Add at least 2 elements to your array</string>
+    <string name="too_small_array">Add at least %1$d elements to your array</string>
     <string name="sort_completed">Sort completed</string>
     <string name="minutes_short">m</string>
     <string name="array_length">Array length</string>
@@ -25,4 +25,10 @@
     <string name="log_too_big_display_array">Array is too big to display all elements. You will see %1$d numbers from whole list</string>
     <string name="log_too_big_update_array">Array is too big to log each iteration. Array will be logged once in %1$d milliseconds</string>
     <string name="sort_completed_in">Sorting completed in</string>
+    <string name="edit_array">Edit array</string>
+    <string name="edit_array_subtitle">( . . | . . )</string>
+    <string name="add">Add</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_array_max_editing_count">You can\'t open edit dialog after reaching max editing size (%1$d)</string>
 </resources>

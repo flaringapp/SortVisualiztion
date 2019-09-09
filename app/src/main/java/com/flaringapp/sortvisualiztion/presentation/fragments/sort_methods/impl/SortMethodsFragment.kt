@@ -1,5 +1,6 @@
 package com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.impl
 
+import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,6 +29,8 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
 
     private var sortShown = false
 
+    private var sortButtonAnimation: Animator? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +45,12 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        sortButtonAnimation?.cancel()
+        sortButtonAnimation = null
+        super.onDestroyView()
+    }
+
     override fun onInitPresenter() {
         presenter.view = this
         presenter.init(activity as MainContract.AppNavigation)
@@ -53,11 +62,12 @@ class SortMethodsFragment: BaseFragment<SortMethodsContract.PresenterContract>()
 
     override fun showSort() {
         sortShown = true
-        ValueAnimator.ofFloat(buttonSort.translationY, 0f)
+
+        sortButtonAnimation = ValueAnimator.ofFloat(buttonSort.translationY, 0f)
             .apply {
                 interpolator = DecelerateInterpolator()
                 duration = ANIM_DURATION
-                addUpdateListener { buttonSort.translationY = it.animatedValue as Float }
+                addUpdateListener { buttonSort?.translationY = it.animatedValue as Float }
                 start()
             }
     }

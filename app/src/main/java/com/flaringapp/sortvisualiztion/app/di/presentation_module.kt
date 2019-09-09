@@ -3,6 +3,9 @@ package com.flaringapp.sortvisualiztion.app.di
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.activities.main.impl.MainActivity
 import com.flaringapp.sortvisualiztion.presentation.activities.main.impl.MainPresenter
+import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.ArrayEditContract
+import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.impl.ArrayEditDialog
+import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.impl.ArrayEditPresenter
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.CreateArrayContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.impl.CreateArrayFragment
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.impl.CreateArrayPresenter
@@ -45,6 +48,10 @@ val presentation_module = module {
 
     scope(named<SortLogsFragment>()) {
         scoped { SortLogsPresenter() as SortLogsContract.PresenterContract }
+    }
+
+    scope(named<ArrayEditDialog>()) {
+        scoped { ArrayEditPresenter() as ArrayEditContract.PresenterContract }
     }
 
 }

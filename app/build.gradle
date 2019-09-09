@@ -15,7 +15,9 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -50,4 +52,6 @@ dependencies {
     implementation appDependencies.fragmentKtx
 
     implementation appDependencies.toasty
+
+    implementation appDependencies.realtimeBlurView
 }

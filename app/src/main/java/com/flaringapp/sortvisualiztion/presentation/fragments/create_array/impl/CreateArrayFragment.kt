@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
+import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.ArrayEditContract
+import com.flaringapp.sortvisualiztion.presentation.dialogs.array_edit.impl.ArrayEditDialog
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.CreateArrayContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_create_array.*
 import org.koin.androidx.scope.currentScope
 
-class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>(), CreateArrayContract.ViewContract {
+class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>(),
+    CreateArrayContract.ViewContract, ArrayEditContract.ArrayEditParent {
 
     override val presenter: CreateArrayContract.PresenterContract by currentScope.inject()
 
@@ -37,12 +40,24 @@ class CreateArrayFragment: BaseFragment<CreateArrayContract.PresenterContract>()
         arrayText.text = text
     }
 
+    override fun showArrayEditDialog(dialog: ArrayEditDialog) {
+        dialog.show(childFragmentManager, ARRAY_EDIT_DIALOG_TAG)
+    }
+
+    override fun onArrayEdited(array: IntArray) {
+        presenter.onArrayEdited(array)
+    }
+
     private fun initViews() {
+        buttonEdit.setOnClickListener { presenter.onEditClicked() }
         buttonRandom.setOnClickListener { presenter.onRandomClicked() }
+
         buttonContinue.setOnClickListener { presenter.onContinueClicked() }
     }
 
     companion object {
+        private const val ARRAY_EDIT_DIALOG_TAG = "dialog_array_edit"
+
         fun newInstance() = CreateArrayFragment()
     }
 }

@@ -10,6 +10,7 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.intro.impl.IntroFr
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseActivity
 import org.koin.androidx.scope.currentScope
 
+
 class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContract.ViewContract,
     MainContract.AppNavigation {
 

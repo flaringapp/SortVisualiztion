@@ -12,4 +12,8 @@ interface IBaseView {
     fun showWarningToast(@StringRes textRes: Int) {
         viewContext?.let { Toasty.warning(it, textRes).show() }
     }
+
+    fun showWarningToast(text: String) {
+        viewContext?.let { Toasty.warning(it, text).show() }
+    }
 }

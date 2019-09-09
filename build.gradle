@@ -48,6 +48,8 @@ ext {
 
     toastyVersion = '1.4.2'
 
+    realtimeBlurViewVersion = '1.2.1'
+    
     appDependencies = [
             appCompat               : "androidx.appcompat:appcompat:$appCompatVersion",
             constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
@@ -61,6 +63,7 @@ ext {
             fragmentKtx             : "androidx.fragment:fragment-ktx:$fragmentKtxVersion",
             fragmentNavigationKtx   : "androidx.navigation:navigation-fragment-ktx:$ktxNavigationVersion",
             UINavigationKtx         : "androidx.navigation:navigation-ui-ktx:$ktxNavigationVersion",
-            toasty                  : "com.github.GrenderG:Toasty:${toastyVersion}",
+            toasty                  : "com.github.GrenderG:Toasty:$toastyVersion",
+            realtimeBlurView        : "com.github.mmin18:realtimeblurview:${realtimeBlurViewVersion}",
     ]
 }
