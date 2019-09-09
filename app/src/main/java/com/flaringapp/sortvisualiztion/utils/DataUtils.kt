@@ -12,7 +12,9 @@ object DataUtils {
 }
 
 fun IntArray.swap(from: Int, to: Int) {
-    this[from] = this[to].also { this[to] = this[from] }
+    val temp = this[from]
+    this[from] = this[to]
+    this[to] = temp
 }
 
 fun ArrayList<Int>.format(): String {

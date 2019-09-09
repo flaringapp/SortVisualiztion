@@ -18,7 +18,7 @@ class SortManagerImpl : SortManager {
                             numbers.swap(index, index + 1)
                         }
 
-                        if (iteration % updateFrequency == 0L) emitter.onNext(numbers)
+                        if (iteration % updateFrequency == 0L) emitter.onNext(numbers.clone())
                         iteration++
                     }
                 }
@@ -45,7 +45,7 @@ class SortManagerImpl : SortManager {
                             swapped = true
                         }
 
-                        if (iteration % updateFrequency == 0L) emitter.onNext(numbers)
+                        if (iteration % updateFrequency == 0L) emitter.onNext(numbers.clone())
                         iteration++
                     }
 
@@ -75,7 +75,7 @@ class SortManagerImpl : SortManager {
                         numbers.swap(i, max)
                     }
 
-                    if (iteration % updateFrequency == 0L) emitter.onNext(numbers)
+                    if (iteration % updateFrequency == 0L) emitter.onNext(numbers.clone())
                 }
 
                 emitter.onNext(numbers)
