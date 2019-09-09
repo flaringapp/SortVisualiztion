@@ -1,5 +1,6 @@
 package com.flaringapp.sortvisualiztion.presentation.activities.main.impl
 
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
@@ -33,18 +34,18 @@ class MainPresenter : BasePresenter<MainContract.ViewContract>(),
         outAnim: Int,
         popInAnim: Int,
         popOutAnim: Int
-    ) {
-        val fragment = when (screen) {
+    ): Fragment {
+        return when (screen) {
             Screen.INTRO -> IntroFragment.newInstance()
             Screen.CREATE_ARRAY -> CreateArrayFragment.newInstance()
             Screen.SORT_METHODS -> SortMethodsFragment.newInstance(data!! as IntArray)
             Screen.SORT -> SortFragment.newInstance(data!! as SortContract.ISortData)
-        }
-
-        fragmentManager?.commit {
-            setCustomAnimations(inAnim, outAnim, popInAnim, popOutAnim)
-            replace(R.id.fragmentContainer, fragment)
-            addToBackStack(null)
+        }.also {
+            fragmentManager?.commit {
+                setCustomAnimations(inAnim, outAnim, popInAnim, popOutAnim)
+                replace(R.id.fragmentContainer, it)
+                addToBackStack(null)
+            }
         }
     }
 }

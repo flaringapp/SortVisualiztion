@@ -5,6 +5,7 @@ import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.activities.main.navigation.Screen
 import com.flaringapp.sortvisualiztion.presentation.fragments.create_array.CreateArrayContract
 import com.flaringapp.sortvisualiztion.presentation.mvp.BasePresenter
+import com.flaringapp.sortvisualiztion.utils.format
 
 class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
     CreateArrayContract.PresenterContract {
@@ -40,12 +41,4 @@ class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
         val size = (10000..50000).random()
         return IntArray(size) { (0 until size).random() }.toCollection(ArrayList())
     }
-}
-
-private fun ArrayList<Int>.format(): String {
-    return this.joinToString(
-        separator = ", ",
-        prefix = "[ ",
-        postfix = " ]"
-    )
 }

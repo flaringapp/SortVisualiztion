@@ -5,24 +5,20 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
 interface SortLogsContract {
 
-    interface ISortLogModel {
-        val text: String
-    }
-
     interface ViewContract : IBaseView {
-        fun initLogs(models: List<ISortLogModel>)
-        fun addNewLog(model: ISortLogModel)
+        fun initLogs(logs: List<String>)
+        fun addNewLog(log: String)
 
         fun goBack()
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
-        fun addLog(logModel: ISortLogModel)
+        fun addLog(log: String)
 
         fun onSortingClicked()
     }
 
     interface SortLogger {
-        fun addLog(logModel: ISortLogModel)
+        fun addLog(log: String)
     }
 }

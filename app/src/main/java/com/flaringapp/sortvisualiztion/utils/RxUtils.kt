@@ -9,30 +9,30 @@ import io.reactivex.subjects.PublishSubject
 
 object RxUtils {
 
-    fun <T> createDelayedFlowable(delayedSubject: PublishSubject<T>, delay: Int): Flowable<T> {
+    fun <T> createDelayedFlowable(publishSubject: PublishSubject<T>, delay: Long): Flowable<T> {
         var lastUpdateTime = 0L
-        return delayedSubject.toFlowable(BackpressureStrategy.LATEST)
-            .doOnNext {
-                if (System.currentTimeMillis() - lastUpdateTime >= delay) {
-                    delayedSubject.onNext(it)
+
+        return publishSubject
+            .toFlowable(BackpressureStrategy.LATEST)
+            .flatMap {
+                if (System.currentTimeMillis() - lastUpdateTime >= delay) Flowable.just(it).also {
+                    lastUpdateTime = System.currentTimeMillis()
                 }
-                lastUpdateTime = System.currentTimeMillis()
+                else Flowable.empty()
             }
-            .doOnComplete { delayedSubject.onComplete() }
-            .doOnError { delayedSubject.onError(it) }
             .onApiThread()
     }
 
 }
 
-fun<T> Observable<T>.onApiThread() = this
+fun <T> Observable<T>.onApiThread() = this
     .subscribeOn(Schedulers.io())
     .observeOn(Schedulers.io())
 
-fun<T> Observable<T>.observeOnUI() = this
+fun <T> Observable<T>.observeOnUI() = this
     .observeOn(AndroidSchedulers.mainThread())
 
-fun<T> Flowable<T>.onApiThread() = this
+fun <T> Flowable<T>.onApiThread() = this
     .subscribeOn(Schedulers.io())
     .observeOn(Schedulers.io())
 
@@ -40,12 +40,12 @@ fun <T> Flowable<T>.onComputationThread(): Flowable<T> = this
     .subscribeOn(Schedulers.computation())
     .observeOn(Schedulers.computation())
 
-fun<T> Flowable<T>.observeOnUI() = this
+fun <T> Flowable<T>.observeOnUI() = this
     .observeOn(AndroidSchedulers.mainThread())
 
-fun<T> PublishSubject<T>.onApiThread() = this
+fun <T> PublishSubject<T>.onApiThread() = this
     .subscribeOn(Schedulers.io())
     .observeOn(Schedulers.io())
 
-fun<T> PublishSubject<T>.observeOnUI() = this
+fun <T> PublishSubject<T>.observeOnUI() = this
     .observeOn(AndroidSchedulers.mainThread())

@@ -2,6 +2,7 @@ package com.flaringapp.sortvisualiztion.presentation.activities.main
 
 import androidx.annotation.AnimRes
 import androidx.annotation.AnimatorRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.activities.main.navigation.Screen
@@ -10,8 +11,7 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
 
 interface MainContract {
 
-    interface ViewContract : IBaseView {
-    }
+    interface ViewContract : IBaseView
 
     interface PresenterContract : IBasePresenter<ViewContract> {
         fun init(fragmentManager: FragmentManager)
@@ -26,7 +26,7 @@ interface MainContract {
             popInAnim: Int,
             @AnimRes @AnimatorRes
             popOutAnim: Int
-        )
+        ): Fragment
     }
 
     interface AppNavigation {
@@ -41,7 +41,7 @@ interface MainContract {
             popInAnim: Int = R.anim.fragment_appear_from_left,
             @AnimRes @AnimatorRes
             popOutAnim: Int = R.anim.fragment_disappear_to_right
-        )
+        ): Fragment
     }
 
 }

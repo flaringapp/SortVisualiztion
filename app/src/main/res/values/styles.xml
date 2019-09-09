@@ -90,4 +90,14 @@
         <item name="android:paddingEnd">48dp</item>
     </style>
 
+    <style name="ButtonVerticalLeft" parent="ButtonSmallPadding">
+        <item name="android:background">@drawable/bg_button_rounded_full_right</item>
+        <item name="android:foreground">@drawable/ripple_rounded_full_right</item>
+    </style>
+
+    <style name="ButtonVerticalRight" parent="ButtonSmallPadding">
+        <item name="android:background">@drawable/bg_button_rounded_full_left</item>
+        <item name="android:foreground">@drawable/ripple_rounded_full_left</item>
+    </style>
+
 </resources>

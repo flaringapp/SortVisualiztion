@@ -14,3 +14,27 @@ object DataUtils {
 fun IntArray.swap(from: Int, to: Int) {
     this[from] = this[to].also { this[to] = this[from] }
 }
+
+fun ArrayList<Int>.format(): String {
+    return this.joinToString(
+        separator = ", ",
+        prefix = "[",
+        postfix = "]"
+    )
+}
+
+fun Array<Number>.format(): String {
+    return this.joinToString(
+        separator = ", ",
+        prefix = "[",
+        postfix = "]"
+    )
+}
+
+fun IntArray.format(): String {
+    return this.joinToString(
+        separator = ", ",
+        prefix = "[",
+        postfix = "]"
+    )
+}

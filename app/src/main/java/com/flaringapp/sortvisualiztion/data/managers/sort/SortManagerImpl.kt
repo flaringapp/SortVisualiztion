@@ -1,11 +1,9 @@
 package com.flaringapp.sortvisualiztion.data.managers.sort
 
-import com.flaringapp.sortvisualiztion.utils.observeOnUI
 import com.flaringapp.sortvisualiztion.utils.onComputationThread
 import com.flaringapp.sortvisualiztion.utils.swap
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
 
 class SortManagerImpl : SortManager {
 
@@ -30,7 +28,6 @@ class SortManagerImpl : SortManager {
             BackpressureStrategy.LATEST
         )
             .onComputationThread()
-            .observeOnUI()
     }
 
     override fun bubbleSortFlagged(numbers: IntArray, updateFrequency: Int): Flowable<IntArray> {
@@ -60,7 +57,6 @@ class SortManagerImpl : SortManager {
             BackpressureStrategy.LATEST
         )
             .onComputationThread()
-            .observeOnUI()
     }
 
     override fun selectionSort(numbers: IntArray, updateFrequency: Int): Flowable<IntArray> {
@@ -88,7 +84,6 @@ class SortManagerImpl : SortManager {
             BackpressureStrategy.LATEST
         )
             .onComputationThread()
-            .observeOnUI()
 
     }
 }

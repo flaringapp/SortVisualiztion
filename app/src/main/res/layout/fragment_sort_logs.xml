@@ -10,9 +10,8 @@
         android:id="@+id/sortingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/ButtonVertical"
+        style="@style/ButtonVerticalLeft"
         android:layout_marginTop="100dp"
-        android:background="@drawable/bg_button_rounded_full_right"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
@@ -21,9 +20,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/buttonTextColor"
             android:textSize="20sp"
-            android:text="@string/sorting"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:text="@string/sorting" />
 
     </RelativeLayout>
 
@@ -31,6 +28,9 @@
         android:id="@+id/logsRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
         android:requiresFadingEdge="vertical"
         android:fadingEdgeLength="16dp"
         tools:listitem="@layout/item_sort_log"/>

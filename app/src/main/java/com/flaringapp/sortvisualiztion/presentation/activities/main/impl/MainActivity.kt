@@ -1,6 +1,7 @@
 package com.flaringapp.sortvisualiztion.presentation.activities.main.impl
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
@@ -38,7 +39,7 @@ class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContrac
         outAnim: Int,
         popInAnim: Int,
         popOutAnim: Int
-    ) {
-        presenter.onNavigationRequested(screen, data, inAnim, outAnim, popInAnim, popOutAnim)
+    ): Fragment {
+        return presenter.onNavigationRequested(screen, data, inAnim, outAnim, popInAnim, popOutAnim)
     }
 }

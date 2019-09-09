@@ -11,12 +11,12 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogs
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.adapter.SortLogsAdapter
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_sort_logs.*
-import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.currentScope
 
 class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
     SortLogsContract.ViewContract, SortLogsContract.SortLogger {
 
-    override val presenter: SortLogsContract.PresenterContract by inject()
+    override val presenter: SortLogsContract.PresenterContract by currentScope.inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,30 +35,36 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
         presenter.view = this
     }
 
-    override fun initLogs(models: List<SortLogsContract.ISortLogModel>) {
-        (logsRecycler.adapter as SortLogsAdapter).setModels(models)
+    override fun initLogs(logs: List<String>) {
+        (logsRecycler.adapter as SortLogsAdapter).setModels(logs)
     }
 
-    override fun addNewLog(model: SortLogsContract.ISortLogModel) {
-        (logsRecycler.adapter as SortLogsAdapter).addModel(model)
+    override fun addNewLog(log: String) {
+        (logsRecycler.adapter as SortLogsAdapter).addModel(log)
     }
 
     override fun goBack() {
         activity?.onBackPressed()
     }
 
-    override fun addLog(logModel: SortLogsContract.ISortLogModel) {
-        presenter.addLog(logModel)
+    override fun addLog(log: String) {
+        presenter.addLog(log)
     }
 
     private fun initViews() {
         sortingButton.setOnClickListener { presenter.onSortingClicked() }
 
         logsRecycler.apply {
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, true).apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false).apply {
                 stackFromEnd = true
             }
             adapter = SortLogsAdapter()
+        }
+    }
+
+    companion object {
+        fun newInstance(): SortLogsFragment {
+            return SortLogsFragment()
         }
     }
 }

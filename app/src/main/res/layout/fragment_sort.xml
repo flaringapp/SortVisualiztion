@@ -32,6 +32,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/sortView" />
 
+    <RelativeLayout
+        android:id="@+id/sortLogsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ButtonVerticalRight"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.flaringapp.sortvisualiztion.presentation.views.vertical_text_view.VerticalTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20sp"
+            android:text="@string/sorting"/>
+
+    </RelativeLayout>
+
     <com.flaringapp.sortvisualiztion.presentation.views.sort_view.SortView
         android:id="@+id/sortView"
         android:layout_width="match_parent"
@@ -39,5 +57,10 @@
         app:lineColor="@color/drawLineColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,1:1" />
+
+    <FrameLayout
+        android:id="@+id/logsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

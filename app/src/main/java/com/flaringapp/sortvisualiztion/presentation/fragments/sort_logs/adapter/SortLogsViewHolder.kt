@@ -19,8 +19,8 @@ class SortLogsViewHolder private constructor(view: View): RecyclerView.ViewHolde
         }
     }
 
-    fun bind(model: SortLogsContract.ISortLogModel) {
-        itemView.logText.text = model.text
+    fun bind(log: String) {
+        itemView.logText.text = log
     }
 
 }

@@ -22,4 +22,7 @@
     <string name="minutes_short">m</string>
     <string name="array_length">Array length</string>
     <string name="sorting">Sorting</string>
+    <string name="log_too_big_display_array">Array is too big to display all elements. You will see %1$d numbers from whole list</string>
+    <string name="log_too_big_update_array">Array is too big to log each iteration. Array will be logged once in %1$d milliseconds</string>
+    <string name="sort_completed_in">Sorting completed in</string>
 </resources>

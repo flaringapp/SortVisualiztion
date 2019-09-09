@@ -85,6 +85,11 @@ class SortView : View {
         invalidate()
     }
 
+    fun clear() {
+        numbers = null
+        invalidate()
+    }
+
     private fun init(context: Context, attrs: AttributeSet? = null) {
         val typedArray = context.obtainStyledAttributes(
             attrs,
