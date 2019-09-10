@@ -26,8 +26,8 @@ class SortPresenter(
 ) : BasePresenter<SortContract.ViewContract>(), SortContract.PresenterContract {
 
     companion object {
-        private const val VIEW_UPDATE_DELAY = 100L
-        private const val VIEW_ELEMENTS_COUNT = 100
+        private const val VIEW_UPDATE_DELAY = 50L
+        private const val VIEW_ELEMENTS_COUNT = 200
 
         private const val LOG_MAX_ELEMENTS_COUNT = 15
         private const val LOG_MAX_UPDATE_SIZE = 250
@@ -82,6 +82,10 @@ class SortPresenter(
 
     override fun onLogsClicked() {
         view?.showLogsFragment()
+    }
+
+    override fun requestHideLogs() {
+        view?.hideLogsFragment()
     }
 
     private fun startCountDown() {

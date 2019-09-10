@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
+import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 import com.flaringapp.sortvisualiztion.presentation.activities.main.MainContract
 import com.flaringapp.sortvisualiztion.presentation.activities.main.navigation.Screen
 import com.flaringapp.sortvisualiztion.presentation.fragments.intro.impl.IntroFragment
@@ -31,6 +32,22 @@ class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContrac
     override fun onInitPresenter() {
         presenter.view = this
         presenter.init(supportFragmentManager)
+    }
+
+    override fun onBackPressed() {
+        var triggered = false
+        for (fragment in supportFragmentManager.fragments) {
+            if (fragment is BackClickListener) {
+                if (fragment.onBackClicked()) {
+                    triggered = true
+                    break
+                }
+            }
+        }
+
+        if (!triggered) {
+            super.onBackPressed()
+        }
     }
 
     override fun openScreen(

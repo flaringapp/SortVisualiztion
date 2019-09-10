@@ -31,12 +31,14 @@ interface SortContract {
 
         fun initLogsFragment()
         fun showLogsFragment()
+        fun hideLogsFragment()
 
         fun addLog(log: String)
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
         fun onLogsClicked()
+        fun requestHideLogs()
     }
 
 }

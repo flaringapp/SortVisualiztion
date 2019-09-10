@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_sort">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="16dp"
+        tools:listitem="@layout/item_sort_log"/>
+
     <RelativeLayout
         android:id="@+id/sortingButton"
         android:layout_width="wrap_content"
@@ -23,13 +31,5 @@
             android:text="@string/sorting" />
 
     </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/logsRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:requiresFadingEdge="vertical"
-        android:fadingEdgeLength="16dp"
-        tools:listitem="@layout/item_sort_log"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

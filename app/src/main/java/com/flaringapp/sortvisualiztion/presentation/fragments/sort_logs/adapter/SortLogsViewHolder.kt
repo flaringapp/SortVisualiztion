@@ -20,7 +20,9 @@ class SortLogsViewHolder private constructor(view: View): RecyclerView.ViewHolde
     }
 
     fun bind(log: String) {
-        itemView.logText.text = log
+        itemView.apply {
+            logText.text = log
+        }
     }
 
 }

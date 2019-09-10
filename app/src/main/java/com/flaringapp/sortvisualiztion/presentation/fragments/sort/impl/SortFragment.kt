@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
+import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract.Companion.SORT_DATA_KEY
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogsContract
@@ -14,11 +15,27 @@ import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
 import kotlinx.android.synthetic.main.fragment_sort.*
 import org.koin.androidx.scope.currentScope
 
-class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContract.ViewContract {
+class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContract.ViewContract,
+    SortLogsContract.SortLoggerParent, BackClickListener {
 
     override val presenter: SortContract.PresenterContract by currentScope.inject()
 
     private var sortLogger: SortLogsContract.SortLogger? = null
+
+    override fun onBackClicked(): Boolean {
+        var triggered = false
+
+        for (fragment in childFragmentManager.fragments) {
+            if (fragment is BackClickListener) {
+                if (fragment.onBackClicked()) {
+                    triggered = true
+                    break
+                }
+            }
+        }
+
+        return triggered
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,8 +102,24 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         }
     }
 
+    override fun hideLogsFragment() {
+        childFragmentManager.commit {
+            setCustomAnimations(
+                R.anim.fragment_appear_from_right,
+                R.anim.fragment_disappear_to_left,
+                R.anim.fragment_appear_from_left,
+                R.anim.fragment_disappear_to_right
+            )
+            hide(childFragmentManager.findFragmentById(R.id.logsContainer)!!)
+        }
+    }
+
     override fun addLog(log: String) {
         sortLogger?.addLog(log)
+    }
+
+    override fun requestClose() {
+        presenter.requestHideLogs()
     }
 
     private fun initViews() {

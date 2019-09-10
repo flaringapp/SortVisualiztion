@@ -8,17 +8,23 @@ interface SortLogsContract {
     interface ViewContract : IBaseView {
         fun initLogs(logs: List<String>)
         fun addNewLog(log: String)
-
-        fun goBack()
     }
 
     interface PresenterContract : IBasePresenter<ViewContract> {
+        fun init(listener: SortLoggerParent)
+
         fun addLog(log: String)
 
         fun onSortingClicked()
+
+        fun onBackClicked()
     }
 
     interface SortLogger {
         fun addLog(log: String)
+    }
+
+    interface SortLoggerParent {
+        fun requestClose()
     }
 }

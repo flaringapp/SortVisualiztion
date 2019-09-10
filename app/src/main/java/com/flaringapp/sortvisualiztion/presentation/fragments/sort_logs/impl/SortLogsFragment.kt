@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.flaringapp.sortvisualiztion.R
+import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogsContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.adapter.SortLogsAdapter
 import com.flaringapp.sortvisualiztion.presentation.mvp.BaseFragment
@@ -14,9 +15,14 @@ import kotlinx.android.synthetic.main.fragment_sort_logs.*
 import org.koin.androidx.scope.currentScope
 
 class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
-    SortLogsContract.ViewContract, SortLogsContract.SortLogger {
+    SortLogsContract.ViewContract, SortLogsContract.SortLogger, BackClickListener {
 
     override val presenter: SortLogsContract.PresenterContract by currentScope.inject()
+
+    override fun onBackClicked(): Boolean {
+        presenter.onBackClicked()
+        return true
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +39,7 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
 
     override fun onInitPresenter() {
         presenter.view = this
+        presenter.init(parentFragment as SortLogsContract.SortLoggerParent)
     }
 
     override fun initLogs(logs: List<String>) {
@@ -45,15 +52,11 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
                 (adapter as SortLogsAdapter).addModel(log)
                 val lastVisiblePosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                 val itemsCount = adapter!!.itemCount
-                if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLLRENCE) {
+                if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLERANCE) {
                     smoothScrollToPosition(itemsCount - 1)
                 }
             }
         }
-    }
-
-    override fun goBack() {
-        activity?.onBackPressed()
     }
 
     override fun addLog(log: String) {
@@ -72,7 +75,7 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
     }
 
     companion object {
-        private const val SCROLL_ITEM_TOLLRENCE = 1
+        private const val SCROLL_ITEM_TOLERANCE = 1
 
         fun newInstance(): SortLogsFragment {
             return SortLogsFragment()
