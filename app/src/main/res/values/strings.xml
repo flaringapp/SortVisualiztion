@@ -32,4 +32,7 @@
     <string name="cancel">Cancel</string>
     <string name="edit_array_max_editing_count">You can\'t open edit dialog after reaching max editing size (%1$d)</string>
     <string name="final_array">Final array</string>
+    <string name="sort_started">Sorting started</string>
+    <string name="removed_numbers_multiple_three">Removed all numbers multiple 3</string>
+    <string name="all_numbers_squared">All numbers are squared</string>
 </resources>

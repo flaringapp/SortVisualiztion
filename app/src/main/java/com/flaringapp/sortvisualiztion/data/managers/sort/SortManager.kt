@@ -8,17 +8,32 @@ interface SortManager {
         private const val DEFAULT_UPDATE_FREQUENCY = 1
     }
 
-    fun bubbleSort(
+    fun bubbleSortIncrease(
         numbers: IntArray,
         updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
     ): Flowable<IntArray>
 
-    fun bubbleSortFlagged(
+    fun bubbleSortFlaggedIncrease(
         numbers: IntArray,
         updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
     ): Flowable<IntArray>
 
-    fun selectionSort(
+    fun bubbleSortDecrease(
+        numbers: IntArray,
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+    ): Flowable<IntArray>
+
+    fun bubbleSortFlaggedDecrease(
+        numbers: IntArray,
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+    ): Flowable<IntArray>
+
+    fun selectionSortIncrease(
+        numbers: IntArray,
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+    ): Flowable<IntArray>
+
+    fun selectionSortDecrease(
         numbers: IntArray,
         updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
     ): Flowable<IntArray>

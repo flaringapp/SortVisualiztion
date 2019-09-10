@@ -8,8 +8,7 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract.
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethod
 import com.flaringapp.sortvisualiztion.presentation.mvp.BasePresenter
 import com.flaringapp.sortvisualiztion.utils.*
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
+import io.reactivex.*
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -19,6 +18,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 
 class SortPresenter(
@@ -111,8 +111,12 @@ class SortPresenter(
             view?.viewContext?.getString(R.string.log_too_big_update_array, LOG_UPDATE_DELAY)!!
         )
 
+
+
+        view?.addLog(sortData.array.viewSubList(LOG_MAX_ELEMENTS_COUNT).format())
+
         val updateViewSubject = PublishSubject.create<IntArray>()
-        val addLogsSubject = PublishSubject.create<IntArray>()
+        val addLogsSubject = PublishSubject.create<String>()
 
         val startTime = System.currentTimeMillis()
 
@@ -145,7 +149,7 @@ class SortPresenter(
             .observeOnUI()
             .subscribeBy(
                 onNext = {
-                    view?.addLog(it.format())
+                    view?.addLog(it)
                 },
                 onComplete = {
                     view?.addLog(
@@ -159,33 +163,68 @@ class SortPresenter(
                 }
             )
 
-        sortDisposable = sortData.method.toAction(sortData.array)
-            .map { it.viewSubList(VIEW_ELEMENTS_COUNT) }
-            .doOnNext {
+        var numbers = sortData.array.toCollection(ArrayList())
+
+        sortDisposable = Single.fromCallable {
+            numbers.removeAll { it % 3 == 0 }
+        }
+            .map { numbers.toIntArray() }
+            .map {
                 currentSortArray = it
-                updateViewSubject.onNext(
-                    it.viewSubList(VIEW_ELEMENTS_COUNT)
-                )
-                addLogsSubject.onNext(
-                    it.viewSubList(LOG_MAX_ELEMENTS_COUNT)
-                )
+                it.viewSubList(LOG_MAX_ELEMENTS_COUNT).format()
             }
-            .doOnError {
-                updateViewSubject.onError(it)
-                addLogsSubject.onError(it)
+            .doOnSuccess {
+                view?.addLog(getString(R.string.removed_numbers_multiple_three)!!)
+                view?.addLog(it)
             }
-            .doOnComplete {
-                updateViewSubject.onComplete()
-                addLogsSubject.onComplete()
+            .onApiThread()
+            .observeOnUI()
+            .flatMap {
+                Single.fromCallable {
+                    numbers = numbers.map { it * it }.toCollection(ArrayList())
+                }
+                    .map { numbers.toIntArray() }
+                    .map {
+                        currentSortArray = it
+                        it.viewSubList(LOG_MAX_ELEMENTS_COUNT).format()
+                    }
+                    .doOnSuccess {
+                        view?.addLog(getString(R.string.all_numbers_squared)!!)
+                        view?.addLog(numbers.toIntArray().viewSubList(LOG_MAX_ELEMENTS_COUNT).format())
+                        view?.addLog(getString(R.string.sort_started)!!)
+                    }
+                    .onApiThread()
+                    .observeOnUI()
+            }.flatMapPublisher {
+                sortData.method.toAction(numbers.toIntArray())
+                    .map { it.viewSubList(VIEW_ELEMENTS_COUNT) }
+                    .doOnNext {
+                        currentSortArray = it
+                        updateViewSubject.onNext(
+                            it.viewSubList(VIEW_ELEMENTS_COUNT)
+                        )
+                        addLogsSubject.onNext(
+                            it.viewSubList(LOG_MAX_ELEMENTS_COUNT).format()
+                        )
+                    }
+                    .doOnError {
+                        updateViewSubject.onError(it)
+                        addLogsSubject.onError(it)
+                    }
+                    .doOnComplete {
+                        updateViewSubject.onComplete()
+                        addLogsSubject.onComplete()
+                    }
             }
+            .onApiThread()
             .subscribe()
     }
 
     private fun SortMethod.toAction(numbers: IntArray): Flowable<IntArray> {
         return when (this) {
-            SortMethod.BUBBLE -> sortManager.bubbleSort(numbers)
-            SortMethod.BUBBLE_FLAGGED -> sortManager.bubbleSortFlagged(numbers)
-            SortMethod.SELECTION -> sortManager.selectionSort(numbers)
+            SortMethod.BUBBLE -> sortManager.bubbleSortDecrease(numbers)
+            SortMethod.BUBBLE_FLAGGED -> sortManager.bubbleSortFlaggedDecrease(numbers)
+            SortMethod.SELECTION -> sortManager.selectionSortDecrease(numbers)
         }
     }
 }

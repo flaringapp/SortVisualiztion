@@ -41,11 +41,13 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
 
     override fun addNewLog(log: String) {
         logsRecycler?.apply {
-            (adapter as SortLogsAdapter).addModel(log)
-            val lastVisiblePosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-            val itemsCount = adapter!!.itemCount
-            if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLLRENCE) {
-                smoothScrollToPosition(itemsCount - 1)
+            post {
+                (adapter as SortLogsAdapter).addModel(log)
+                val lastVisiblePosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                val itemsCount = adapter!!.itemCount
+                if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLLRENCE) {
+                    smoothScrollToPosition(itemsCount - 1)
+                }
             }
         }
     }
