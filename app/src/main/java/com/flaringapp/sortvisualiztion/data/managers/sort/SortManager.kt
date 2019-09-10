@@ -10,31 +10,37 @@ interface SortManager {
 
     fun bubbleSortIncrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
     fun bubbleSortFlaggedIncrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
     fun bubbleSortDecrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
     fun bubbleSortFlaggedDecrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
     fun selectionSortIncrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
     fun selectionSortDecrease(
         numbers: IntArray,
-        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY
+        updateFrequency: Int = DEFAULT_UPDATE_FREQUENCY,
+        accurateLogging: Boolean = false
     ): Flowable<IntArray>
 }

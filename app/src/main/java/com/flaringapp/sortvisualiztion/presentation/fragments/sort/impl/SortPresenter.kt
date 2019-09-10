@@ -8,8 +8,10 @@ import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract.
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethod
 import com.flaringapp.sortvisualiztion.presentation.mvp.BasePresenter
 import com.flaringapp.sortvisualiztion.utils.*
-import io.reactivex.*
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -104,6 +106,8 @@ class SortPresenter(
     }
 
     private fun startSorting() {
+        val importantLogging = sortData.array.size < LOG_MAX_UPDATE_SIZE
+
         if (sortData.array.size > LOG_MAX_ELEMENTS_COUNT) view?.addLog(
             view?.viewContext?.getString(
                 R.string.log_too_big_display_array,
@@ -111,11 +115,9 @@ class SortPresenter(
             )!!
         )
 
-        if (sortData.array.size > LOG_MAX_UPDATE_SIZE) view?.addLog(
+        if (!importantLogging) view?.addLog(
             view?.viewContext?.getString(R.string.log_too_big_update_array, LOG_UPDATE_DELAY)!!
         )
-
-
 
         view?.addLog(sortData.array.viewSubList(LOG_MAX_ELEMENTS_COUNT).format())
 
@@ -144,7 +146,7 @@ class SortPresenter(
                 }
             )
 
-        addLogsDisposable = if (sortData.array.size > LOG_MAX_UPDATE_SIZE) {
+        addLogsDisposable = if (!importantLogging) {
             RxUtils.createDelayedFlowable(addLogsSubject, LOG_UPDATE_DELAY)
         } else {
             addLogsSubject.toFlowable(BackpressureStrategy.LATEST)
@@ -200,7 +202,7 @@ class SortPresenter(
                     .onApiThread()
                     .observeOnUI()
             }.flatMapPublisher {
-                sortData.method.toAction(numbers.toIntArray())
+                sortData.method.toAction(numbers.toIntArray(), importantLogging)
                     .map { it.viewSubList(VIEW_ELEMENTS_COUNT) }
                     .doOnNext {
                         currentSortArray = it
@@ -224,11 +226,23 @@ class SortPresenter(
             .subscribe()
     }
 
-    private fun SortMethod.toAction(numbers: IntArray): Flowable<IntArray> {
+    private fun SortMethod.toAction(
+        numbers: IntArray,
+        importantLogging: Boolean
+    ): Flowable<IntArray> {
         return when (this) {
-            SortMethod.BUBBLE -> sortManager.bubbleSortDecrease(numbers)
-            SortMethod.BUBBLE_FLAGGED -> sortManager.bubbleSortFlaggedDecrease(numbers)
-            SortMethod.SELECTION -> sortManager.selectionSortDecrease(numbers)
+            SortMethod.BUBBLE -> sortManager.bubbleSortDecrease(
+                numbers,
+                accurateLogging = importantLogging
+            )
+            SortMethod.BUBBLE_FLAGGED -> sortManager.bubbleSortFlaggedDecrease(
+                numbers,
+                accurateLogging = importantLogging
+            )
+            SortMethod.SELECTION -> sortManager.selectionSortDecrease(
+                numbers,
+                accurateLogging = importantLogging
+            )
         }
     }
 }
