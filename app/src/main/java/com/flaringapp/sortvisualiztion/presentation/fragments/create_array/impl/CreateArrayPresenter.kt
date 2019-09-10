@@ -61,7 +61,7 @@ class CreateArrayPresenter : BasePresenter<CreateArrayContract.ViewContract>(),
     }
 
     private fun randomArray(): ArrayList<Int> {
-        val size = (5000..15000).random()
+        val size = (10000..30000).random()
         return IntArray(size) { (0 until 50).random() }.toCollection(ArrayList())
     }
 
