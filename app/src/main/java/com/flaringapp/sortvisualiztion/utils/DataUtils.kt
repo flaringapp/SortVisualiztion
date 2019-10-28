@@ -17,7 +17,7 @@ fun IntArray.swap(from: Int, to: Int) {
     this[to] = temp
 }
 
-fun ArrayList<Int>.format(): String {
+fun Collection<Int>.format(): String {
     return this.joinToString(
         separator = ", ",
         prefix = "[",

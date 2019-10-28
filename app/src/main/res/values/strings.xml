@@ -35,4 +35,8 @@
     <string name="sort_started">Sorting started</string>
     <string name="removed_numbers_multiple_three">Removed all numbers multiple 3</string>
     <string name="all_numbers_squared">All numbers are squared</string>
+    <string name="sort_method_shell">Shell sort</string>
+    <string name="sort_method_merge">Merge sort</string>
+    <string name="sort_method_quick">Quick sort</string>
+    <string name="sort_method_counting">Counting sort</string>
 </resources>

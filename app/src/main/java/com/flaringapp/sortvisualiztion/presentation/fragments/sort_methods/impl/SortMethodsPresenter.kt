@@ -68,5 +68,21 @@ val models = listOf(
     SortMethodModel(
         R.string.sort_method_selection,
         SortMethod.SELECTION
+    ),
+    SortMethodModel(
+        R.string.sort_method_shell,
+        SortMethod.SHELL
+    ),
+    SortMethodModel(
+        R.string.sort_method_merge,
+        SortMethod.MERGE
+    ),
+    SortMethodModel(
+        R.string.sort_method_quick,
+        SortMethod.QUICK
+    ),
+    SortMethodModel(
+        R.string.sort_method_counting,
+        SortMethod.COUNTING
     )
 ) as List<SortMethodsContract.ISortMethodModel>

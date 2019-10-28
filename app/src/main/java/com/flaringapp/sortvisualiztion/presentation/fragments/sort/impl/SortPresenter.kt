@@ -243,6 +243,18 @@ class SortPresenter(
                 numbers,
                 accurateLogging = importantLogging
             )
+            SortMethod.SHELL -> sortManager.shellSortDecrease(
+                numbers
+            )
+            SortMethod.MERGE -> sortManager.mergeSortDecrease(
+                numbers
+            )
+            SortMethod.QUICK -> sortManager.quickSortDecrease(
+                numbers
+            )
+            SortMethod.COUNTING -> sortManager.countSortDecrease(
+                numbers
+            )
         }
     }
 }
