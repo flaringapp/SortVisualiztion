@@ -2,9 +2,9 @@ package com.flaringapp.sortvisualiztion.presentation.mvp
 
 import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 
 abstract class BaseActivity<T : IBasePresenter<*>> : AppCompatActivity(), IBaseView {
 
@@ -21,6 +21,18 @@ abstract class BaseActivity<T : IBasePresenter<*>> : AppCompatActivity(), IBaseV
     override fun onSaveInstanceState(outState: Bundle) {
         presenter.saveInstanceState(outState)
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onBackPressed() {
+        for (fragment in supportFragmentManager.fragments.reversed()) {
+            if (fragment is BackClickListener) {
+                if (fragment.onBackClicked()) {
+                    return
+                }
+            }
+        }
+
+        super.onBackPressed()
     }
 
     override fun onDestroy() {

@@ -80,8 +80,8 @@
     </style>
 
     <style name="ButtonSmallPadding" parent="ButtonStyle">
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
     </style>
@@ -89,17 +89,6 @@
     <style name="ButtonSmall" parent="ButtonSmallPadding">
         <item name="android:minWidth">@dimen/smallButtonMinSize</item>
         <item name="android:textSize">@dimen/smallButtonTextSize</item>
-    </style>
-
-    <style name="ButtonVertical" parent="ButtonSmall">
-        <item name="android:background">@drawable/bg_button_rounded_full_top</item>
-        <item name="android:foreground">@drawable/ripple_rounded_full_top</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:paddingStart">0dp</item>
-        <item name="android:paddingEnd">0dp</item>
-        <item name="android:minWidth">0dp</item>
-        <item name="android:minHeight">@dimen/smallButtonMinSize</item>
     </style>
 
     <style name="ButtonBottom" parent="ButtonSmallPadding">
@@ -121,16 +110,6 @@
     <style name="ButtonBottomAction" parent="ButtonBottom">
         <item name="android:paddingStart">48dp</item>
         <item name="android:paddingEnd">48dp</item>
-    </style>
-
-    <style name="ButtonVerticalLeft" parent="ButtonSmallPadding">
-        <item name="android:background">@drawable/bg_button_rounded_full_right</item>
-        <item name="android:foreground">@drawable/ripple_rounded_full_right</item>
-    </style>
-
-    <style name="ButtonVerticalRight" parent="ButtonSmallPadding">
-        <item name="android:background">@drawable/bg_button_rounded_full_left</item>
-        <item name="android:foreground">@drawable/ripple_rounded_full_left</item>
     </style>
 
 </resources>

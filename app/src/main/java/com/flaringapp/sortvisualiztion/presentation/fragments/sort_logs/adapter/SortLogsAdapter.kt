@@ -3,9 +3,10 @@ package com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class SortLogsAdapter : RecyclerView.Adapter<SortLogsViewHolder>() {
-
-    private val logs = ArrayList<String>()
+class SortLogsAdapter(
+    initialLogs: List<String>
+) : RecyclerView.Adapter<SortLogsViewHolder>() {
+    private val logs = ArrayList<String>(initialLogs)
 
     override fun getItemCount() = logs.size
 

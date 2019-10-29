@@ -2,8 +2,6 @@ package com.flaringapp.sortvisualiztion.presentation.fragments.sort
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import androidx.fragment.app.FragmentManager
-import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogsContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_methods.SortMethod
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBasePresenter
 import com.flaringapp.sortvisualiztion.presentation.mvp.IBaseView
@@ -22,15 +20,14 @@ interface SortContract {
 
     interface ViewContract : IBaseView {
         fun updateCaptionText(@StringRes textRes: Int)
-        fun updateCaptionText(text: String)
+        fun updateTimeText(text: String)
 
         fun setArraySizeText(text: String)
         fun setSortMethodText(text: String)
 
         fun updateViewSortArray(array: IntArray)
 
-        fun initLogsFragment()
-        fun showLogsFragment()
+        fun showLogsFragment(logs: List<String>)
         fun hideLogsFragment()
 
         fun addLog(log: String)
@@ -39,6 +36,8 @@ interface SortContract {
     interface PresenterContract : IBasePresenter<ViewContract> {
         fun onLogsClicked()
         fun requestHideLogs()
+
+        fun onLogAdded(string: String)
     }
 
 }

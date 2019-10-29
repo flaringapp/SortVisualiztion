@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
 import com.flaringapp.sortvisualiztion.R
-import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort.SortContract.Companion.SORT_DATA_KEY
 import com.flaringapp.sortvisualiztion.presentation.fragments.sort_logs.SortLogsContract
@@ -16,26 +15,11 @@ import kotlinx.android.synthetic.main.fragment_sort.*
 import org.koin.androidx.scope.currentScope
 
 class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContract.ViewContract,
-    SortLogsContract.SortLoggerParent, BackClickListener {
+    SortLogsContract.SortLoggerParent {
 
     override val presenter: SortContract.PresenterContract by currentScope.inject()
 
     private var sortLogger: SortLogsContract.SortLogger? = null
-
-    override fun onBackClicked(): Boolean {
-        var triggered = false
-
-        for (fragment in childFragmentManager.fragments) {
-            if (fragment is BackClickListener) {
-                if (fragment.onBackClicked()) {
-                    triggered = true
-                    break
-                }
-            }
-        }
-
-        return triggered
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,8 +47,8 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         header?.setText(textRes)
     }
 
-    override fun updateCaptionText(text: String) {
-        header?.text = text
+    override fun updateTimeText(text: String) {
+        timeText?.text = text
     }
 
     override fun setArraySizeText(text: String) {
@@ -79,18 +63,9 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
         sortView.invalidateNumbers(array)
     }
 
-    override fun initLogsFragment() {
-        SortLogsFragment.newInstance().let {
-            sortLogger = it
-            childFragmentManager.commit {
-                addToBackStack(null)
-                add(R.id.logsContainer, it)
-                hide(it)
-            }
-        }
-    }
-
-    override fun showLogsFragment() {
+    override fun showLogsFragment(logs: List<String>) {
+        val fragment = SortLogsFragment.newInstance(logs)
+        sortLogger = fragment
         childFragmentManager.commit {
             setCustomAnimations(
                 R.anim.fragment_appear_from_right,
@@ -98,24 +73,18 @@ class SortFragment : BaseFragment<SortContract.PresenterContract>(), SortContrac
                 R.anim.fragment_appear_from_left,
                 R.anim.fragment_disappear_to_right
             )
-            show(childFragmentManager.findFragmentById(R.id.logsContainer)!!)
+            add(R.id.logsContainer, fragment)
+            addToBackStack(null)
         }
     }
 
     override fun hideLogsFragment() {
-        childFragmentManager.commit {
-            setCustomAnimations(
-                R.anim.fragment_appear_from_right,
-                R.anim.fragment_disappear_to_left,
-                R.anim.fragment_appear_from_left,
-                R.anim.fragment_disappear_to_right
-            )
-            hide(childFragmentManager.findFragmentById(R.id.logsContainer)!!)
-        }
+        onBackClicked()
     }
 
     override fun addLog(log: String) {
         sortLogger?.addLog(log)
+        presenter.onLogAdded(log)
     }
 
     override fun requestClose() {

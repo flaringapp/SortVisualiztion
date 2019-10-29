@@ -44,9 +44,9 @@ interface SortManager {
         accurateLogging: Boolean = false
     ): Flowable<IntArray>
 
-    fun shellSortIncrease(matrix: IntArray): Flowable<IntArray>
+    fun shellSortIncrease(data: IntArray): Flowable<IntArray>
 
-    fun shellSortDecrease(matrix: IntArray): Flowable<IntArray>
+    fun shellSortDecrease(data: IntArray): Flowable<IntArray>
 
     fun mergeSortDecrease(data: IntArray): Flowable<IntArray>
 

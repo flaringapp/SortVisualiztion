@@ -22,7 +22,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
-
 class SortPresenter(
     private val sortManager: SortManager
 ) : BasePresenter<SortContract.ViewContract>(), SortContract.PresenterContract {
@@ -46,6 +45,8 @@ class SortPresenter(
 
     private var formatter: DateFormat? = null
 
+    private val logs: MutableList<String> = mutableListOf()
+
     private var countDownDisposable: Disposable? = null
     private var viewUpdateDisposable: Disposable? = null
     private var addLogsDisposable: Disposable? = null
@@ -59,8 +60,6 @@ class SortPresenter(
 
     override fun onStart() {
         super.onStart()
-
-        view?.initLogsFragment()
 
         formatter = SimpleDateFormat("mm:ss:SSS", view!!.viewContext!!.getCurrentLocale()).apply {
             timeZone = TimeZone.getTimeZone("UTC")
@@ -83,11 +82,15 @@ class SortPresenter(
     }
 
     override fun onLogsClicked() {
-        view?.showLogsFragment()
+        view?.showLogsFragment(logs)
     }
 
     override fun requestHideLogs() {
         view?.hideLogsFragment()
+    }
+
+    override fun onLogAdded(string: String) {
+        logs += string
     }
 
     private fun startCountDown() {
@@ -98,7 +101,7 @@ class SortPresenter(
                 .observeOnUI()
                 .subscribe {
                     if (it < countDown.size) {
-                        view?.updateCaptionText(countDown[it])
+                        view?.updateTimeText(countDown[it])
                     } else {
                         startSorting()
                     }
@@ -131,7 +134,7 @@ class SortPresenter(
             .subscribeOn(Schedulers.newThread())
             .observeOnUI()
             .subscribe {
-                view?.updateCaptionText(formatter!!.format(it - startTime))
+                view?.updateTimeText(formatter!!.format(it - startTime))
             }
 
         viewUpdateDisposable = RxUtils.createDelayedFlowable(updateViewSubject, VIEW_UPDATE_DELAY)

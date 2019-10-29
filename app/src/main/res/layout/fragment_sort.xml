@@ -29,26 +29,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/HeaderText"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/timeText"/>
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/AppTitleText"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintBottom_toTopOf="@id/sortView" />
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/sortLogsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/ButtonVerticalRight"
+        style="@style/ButtonRight"
         android:layout_marginTop="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <com.flaringapp.sortvisualiztion.presentation.views.vertical_text_view.VerticalTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/buttonTextColor"
-            android:textSize="20sp"
-            android:text="@string/sorting"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@android:drawable/arrow_up_float"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"/>
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <com.flaringapp.sortvisualiztion.presentation.views.sort_view.SortView
         android:id="@+id/sortView"

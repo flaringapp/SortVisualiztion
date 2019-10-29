@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
+import com.flaringapp.sortvisualiztion.presentation.activities.main.BackClickListener
 
-    abstract class BaseFragment<T : IBasePresenter<*>> : Fragment(), IBaseView {
+abstract class BaseFragment<T : IBasePresenter<*>> : Fragment(), IBaseView, BackClickListener {
 
     abstract val presenter: T
 
@@ -15,6 +16,23 @@ import androidx.fragment.app.Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.onCreate(arguments, savedInstanceState)
+    }
+
+    override fun onBackClicked(): Boolean {
+        for (fragment in childFragmentManager.fragments.reversed()) {
+            if (fragment is BackClickListener) {
+                if (fragment.onBackClicked()) {
+                    return true
+                }
+            }
+        }
+
+        if (childFragmentManager.backStackEntryCount > 0) {
+            childFragmentManager.popBackStack()
+            return true
+        }
+
+        return false
     }
 
     @CallSuper

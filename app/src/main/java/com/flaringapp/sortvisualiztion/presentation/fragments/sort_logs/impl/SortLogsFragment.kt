@@ -19,11 +19,6 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
 
     override val presenter: SortLogsContract.PresenterContract by currentScope.inject()
 
-    override fun onBackClicked(): Boolean {
-        presenter.onBackClicked()
-        return true
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +34,9 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
 
     override fun onInitPresenter() {
         presenter.view = this
-        presenter.init(parentFragment as SortLogsContract.SortLoggerParent)
+        presenter.init(
+            parentFragment as SortLogsContract.SortLoggerParent
+        )
     }
 
     override fun initLogs(logs: List<String>) {
@@ -50,7 +47,8 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
         logsRecycler?.apply {
             post {
                 (adapter as SortLogsAdapter).addModel(log)
-                val lastVisiblePosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                val lastVisiblePosition =
+                    (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                 val itemsCount = adapter!!.itemCount
                 if (lastVisiblePosition >= itemsCount - 1 - SCROLL_ITEM_TOLERANCE) {
                     smoothScrollToPosition(itemsCount - 1)
@@ -70,15 +68,23 @@ class SortLogsFragment : BaseFragment<SortLogsContract.PresenterContract>(),
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false).apply {
                 stackFromEnd = true
             }
-            adapter = SortLogsAdapter()
+            adapter = SortLogsAdapter(
+                arguments!!.getStringArray(LOGS_KEY)!!.toList()
+            )
         }
     }
 
     companion object {
+        private const val LOGS_KEY = "key_logs"
+
         private const val SCROLL_ITEM_TOLERANCE = 1
 
-        fun newInstance(): SortLogsFragment {
-            return SortLogsFragment()
+        fun newInstance(logs: List<String>): SortLogsFragment {
+            return SortLogsFragment().apply {
+                arguments = Bundle().apply {
+                    putStringArray(LOGS_KEY, logs.toTypedArray())
+                }
+            }
         }
     }
 }

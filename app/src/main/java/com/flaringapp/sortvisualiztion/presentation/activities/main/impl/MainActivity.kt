@@ -33,22 +33,6 @@ class MainActivity : BaseActivity<MainContract.PresenterContract>(), MainContrac
         presenter.init(supportFragmentManager)
     }
 
-    override fun onBackPressed() {
-        var triggered = false
-        for (fragment in supportFragmentManager.fragments) {
-            if (fragment is BackClickListener) {
-                if (fragment.onBackClicked()) {
-                    triggered = true
-                    break
-                }
-            }
-        }
-
-        if (!triggered) {
-            super.onBackPressed()
-        }
-    }
-
     override fun openScreen(
         screen: Screen,
         data: Any?,

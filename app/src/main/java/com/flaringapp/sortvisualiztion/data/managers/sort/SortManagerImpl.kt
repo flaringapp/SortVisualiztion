@@ -1,6 +1,5 @@
 package com.flaringapp.sortvisualiztion.data.managers.sort
 
-import com.flaringapp.sortvisualiztion.utils.format
 import com.flaringapp.sortvisualiztion.utils.onComputationThread
 import com.flaringapp.sortvisualiztion.utils.swap
 import io.reactivex.BackpressureStrategy
